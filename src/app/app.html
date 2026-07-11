@@ -46,12 +46,21 @@
     <symbol id="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none">
       <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"></path>
     </symbol>
+    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <line x1="5" y1="5" x2="19" y2="19"></line>
+      <line x1="19" y1="5" x2="5" y2="19"></line>
+    </symbol>
   </defs>
 </svg>
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-mark">
+    <a class="nav-mark" href="#" (click)="scrollToTop($event)" aria-label="Manny Santelices, back to top">
       <picture>
         <source srcset="assets/logos/logo-horizontal-white.webp" type="image/webp" />
         <img class="logo-img logo-light" src="assets/logos/logo-horizontal-white.png" width="480" height="160" alt="Manny Santelices, Software and Systems" loading="eager" decoding="async" />
@@ -60,23 +69,34 @@
         <source srcset="assets/logos/logo-horizontal-dark.webp" type="image/webp" />
         <img class="logo-img logo-dark" src="assets/logos/logo-horizontal-dark.png" width="480" height="160" alt="Manny Santelices, Software and Systems" loading="eager" decoding="async" />
       </picture>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#ai-leverage">AI Leverage</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#practice">Practice</a></li>
-      <li><a href="#web">Web Dev</a></li>
-      <li><a href="#integrations">Integrations</a></li>
-    </ul>
-    <div class="nav-right">
-      <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-pressed]="isDark()" aria-label="Toggle dark mode">
-        @if (isDark()) {
-          <svg><use href="#icon-moon"></use></svg>
-        } @else {
-          <svg><use href="#icon-sun"></use></svg>
-        }
-      </button>
-      <a class="nav-cta" href="#contact">Contact</a>
+    </a>
+
+    <button class="nav-toggle" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()" aria-controls="nav-menu" aria-label="Toggle menu">
+      @if (isMenuOpen()) {
+        <svg><use href="#icon-close"></use></svg>
+      } @else {
+        <svg><use href="#icon-menu"></use></svg>
+      }
+    </button>
+
+    <div class="nav-menu" id="nav-menu" [class.open]="isMenuOpen()">
+      <ul class="nav-links">
+        <li><a href="#ai-leverage" (click)="closeMenu()">AI Leverage</a></li>
+        <li><a href="#skills" (click)="closeMenu()">Skills</a></li>
+        <li><a href="#practice" (click)="closeMenu()">Practice</a></li>
+        <li><a href="#web" (click)="closeMenu()">Web Dev</a></li>
+        <li><a href="#integrations" (click)="closeMenu()">Integrations</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-pressed]="isDark()" aria-label="Toggle dark mode">
+          @if (isDark()) {
+            <svg><use href="#icon-moon"></use></svg>
+          } @else {
+            <svg><use href="#icon-sun"></use></svg>
+          }
+        </button>
+        <a class="nav-cta" href="#contact" (click)="closeMenu()">Contact</a>
+      </div>
     </div>
   </div>
 </nav>

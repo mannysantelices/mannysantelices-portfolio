@@ -117,6 +117,12 @@
   outline-offset: 3px;
 }
 
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 120px;
+  }
+}
+
 @media (max-width: 720px) {
   .hero-inner {
     padding: 28px;

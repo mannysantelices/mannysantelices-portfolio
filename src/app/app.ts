@@ -30,6 +30,7 @@ export class App {
 
   protected readonly isDark = signal(false);
   protected readonly sendState = signal<SendState>('idle');
+  protected readonly isMenuOpen = signal(false);
 
   constructor() {
     this.setSeoTags();
@@ -43,6 +44,21 @@ export class App {
     this.document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     this.isDark.set(next === 'dark');
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen.update((open) => !open);
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen.set(false);
+  }
+
+  scrollToTop(event: Event): void {
+    event.preventDefault();
+    this.closeMenu();
+    if (!isPlatformBrowser(this.platformId)) return;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   sendMessage(event: Event): void {

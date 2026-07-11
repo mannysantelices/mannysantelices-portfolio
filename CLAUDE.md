@@ -116,3 +116,16 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
   restart. Don't waste time debugging "my change isn't showing up" against a dev server
   that's been running since before a dependency was added — restart it after any
   `npm install`.
+- A CSS-modifier class with higher specificity than a responsive override silently wins
+  at every viewport width (`.practice-grid.cols-3 { grid-template-columns: repeat(3,
+  1fr) }` beat `@media (max-width: 860px) { .practice-grid { grid-template-columns: 1fr
+  } }` since two classes outrank one, regardless of the media query). Any grid/layout
+  modifier class must be added to the *same* responsive override selector list, not just
+  the base class, or it silently escapes mobile collapse.
+- When testing responsive layouts via CDP, `Emulation.setDeviceMetricsOverride` with
+  `mobile: true` and a narrow width (e.g. 390) can silently clamp to a much wider
+  viewport (662px observed) in this headless Chrome build — `mobile: false` with the
+  same width applies correctly. The CLI `--window-size` flag has the same unreliability
+  for narrow widths. Always confirm `window.innerWidth` matches the requested value
+  before trusting a "no overflow" or "element hidden" result from a mobile emulation
+  test.
