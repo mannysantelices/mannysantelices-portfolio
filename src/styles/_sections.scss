@@ -118,6 +118,9 @@
   background: var(--line);
   border: 1px solid var(--line);
 }
+.practice-grid.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
 .practice-card {
   background: var(--bg);
   padding: 36px 34px;

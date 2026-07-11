@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser';
 const SITE_URL = 'https://mannysantelices.github.io/mannysantelices-portfolio/';
 const SITE_TITLE = 'Manny Santelices, Software Architect and DevOps Engineer';
 const SITE_DESCRIPTION =
-  'Manny Santelices is a software architect, DevOps engineer, and web developer specializing in Node.js, TypeScript, Angular, PHP, and AWS cloud infrastructure, with a practice built around DevSecFinOps.';
+  'Manny Santelices is a software architect, DevOps engineer, and web developer running an AI-native practice with Claude Code and Codex, specializing in Node.js, TypeScript, Angular, PHP, and AWS cloud infrastructure, with a practice built around DevSecFinOps.';
 
 // EmailJS keys are public by design (client-side send, rate-limited per account) — safe to ship in the bundle.
 const EMAILJS_SERVICE_ID = 'service_lv1kk7h';
@@ -150,6 +150,9 @@ export class App {
         'DevOps',
         'DevSecFinOps',
         'Cloud Architecture',
+        'Claude Code',
+        'Codex',
+        'Agentic AI Development',
       ],
     });
     this.renderer.appendChild(this.document.head, jsonLd);
