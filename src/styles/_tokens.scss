@@ -1,0 +1,56 @@
+:root {
+  --bg: #ffffff;
+  --bg-raised: #faf3f4;
+  --bg-panel: #ffffff;
+  --line: rgba(164, 28, 68, 0.18);
+  --line-strong: rgba(164, 28, 68, 0.42);
+  --grid-line: rgba(32, 19, 22, 0.055);
+  --ink: #201316;
+  --ink-dim: #5c474b;
+  --ink-faint: #8a7378;
+  --accent: #a41c44;
+  --accent-soft: #c22a54;
+  --accent-ink: #ffffff;
+  --teal: #2f6f6a;
+  --ok: #3f7d4e;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-mono: 'SFMono-Regular', ui-monospace, 'Space Grotesk', monospace;
+  --radius: 3px;
+}
+
+:root[data-theme='dark'] {
+  --bg: #0d0d0d;
+  --bg-raised: #171717;
+  --bg-panel: #1b1b1b;
+  --line: rgba(226, 120, 148, 0.2);
+  --line-strong: rgba(226, 120, 148, 0.44);
+  --grid-line: rgba(255, 255, 255, 0.05);
+  --ink: #f4f0ee;
+  --ink-dim: #b9b0ac;
+  --ink-faint: #837c78;
+  --accent: #dd4870;
+  --accent-soft: #e8688c;
+  --accent-ink: #0d0d0d;
+  --teal: #62a49d;
+  --ok: #7fb88a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0d0d0d;
+    --bg-raised: #171717;
+    --bg-panel: #1b1b1b;
+    --line: rgba(226, 120, 148, 0.2);
+    --line-strong: rgba(226, 120, 148, 0.44);
+    --grid-line: rgba(255, 255, 255, 0.05);
+    --ink: #f4f0ee;
+    --ink-dim: #b9b0ac;
+    --ink-faint: #837c78;
+    --accent: #dd4870;
+    --accent-soft: #e8688c;
+    --accent-ink: #0d0d0d;
+    --teal: #62a49d;
+    --ok: #7fb88a;
+  }
+}

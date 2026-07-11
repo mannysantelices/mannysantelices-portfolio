@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mannysantelices.github.io/mannysantelices-portfolio/sitemap.xml

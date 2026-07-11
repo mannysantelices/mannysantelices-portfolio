@@ -1,0 +1,181 @@
+/* ---------- SKILLS TOPOLOGY ---------- */
+.stack {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.stack-row {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: var(--bg);
+}
+.stack-label {
+  padding: 26px 28px;
+  background: var(--bg-raised);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.stack-label .idx {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--teal);
+}
+.stack-label .name {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+.stack-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 10px;
+  padding: 22px 28px;
+}
+.chip {
+  font-size: 15px;
+  padding: 8px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  color: var(--ink-dim);
+  font-family: var(--font-mono);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.chip:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+.chip.cert {
+  color: var(--accent);
+  border-color: var(--line-strong);
+}
+
+@media (max-width: 720px) {
+  .stack-row {
+    grid-template-columns: 1fr;
+  }
+  .stack-label {
+    padding: 20px 20px 8px;
+  }
+  .stack-items {
+    padding: 8px 20px 22px;
+  }
+}
+
+/* ---------- LANGUAGES ---------- */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.lang-col h4 {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.lang-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.lang-col li {
+  font-size: 17px;
+  font-weight: 500;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.lang-col li .tag {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+@media (max-width: 860px) {
+  .lang-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- PRACTICE / WEB DEV CARDS ---------- */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.practice-card {
+  background: var(--bg);
+  padding: 36px 34px;
+  transition: background 0.2s ease;
+}
+.practice-card:hover {
+  background: var(--bg-raised);
+}
+.practice-card .glyph {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+.practice-card h3 {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+.practice-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.practice-card li {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  padding-left: 18px;
+  position: relative;
+}
+.practice-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 1px;
+  background: var(--accent);
+}
+.practice-card li strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .practice-grid {
+    grid-template-columns: 1fr;
+  }
+}

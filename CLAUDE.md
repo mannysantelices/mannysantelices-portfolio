@@ -63,3 +63,27 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
   keep this base-href in sync with the repo name if the repo is ever renamed.
 - GitHub Pages source must be set to "GitHub Actions" in repo Settings → Pages (manual,
   one-time step, not automatable via git).
+
+## Gotchas
+
+- Static files referenced by runtime-relative paths (`<img src="assets/...">`, favicons,
+  robots.txt) belong in `public/` — Angular's application builder copies that folder
+  verbatim and such paths resolve correctly against `<base href>` at any deployment path.
+  Files referenced via CSS `url()` (fonts, background images) belong in `src/assets/`
+  instead, referenced with a path relative to the referencing `.scss` file — esbuild
+  resolves and content-hashes these at build time, so they stay portable across base
+  hrefs without manual path prefixing. Don't put font files in `public/` and reference
+  them with a bare or absolute path — esbuild's CSS resolver will either fail to resolve
+  bare paths or leave absolute (`/...`) paths unrewritten, breaking under a GitHub Pages
+  subpath.
+- `prefers-reduced-motion` overrides must zero out `animation-delay` and set
+  `animation-fill-mode: both`, not just `animation-duration` — a delayed entrance
+  animation (`animation: rise 0.8s 0.4s ease forwards`) still honors its delay under a
+  duration-only override, so reduced-motion users see a real blank delay before content
+  appears.
+- Any scroll-reveal (`IntersectionObserver`) or `window.matchMedia` usage needs a runtime
+  capability check (`typeof IntersectionObserver !== 'function'`), not just an
+  `isPlatformBrowser` guard — Vitest's jsdom test environment satisfies
+  `isPlatformBrowser` but doesn't polyfill either API, so unguarded calls throw in unit
+  tests. Pair scroll-reveal with a `setTimeout` fallback that force-reveals content, so
+  nothing stays permanently invisible if the observer never fires.
