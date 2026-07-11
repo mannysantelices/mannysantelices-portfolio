@@ -101,3 +101,18 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
   differs per build/page, so hash-allowlisting isn't practical, and GitHub Pages can't
   inject a per-request nonce since it's static hosting. Blocking them doesn't break
   hydration outright but does silently drop Angular's early-event-replay mechanism.
+- Control-flow blocks (`@if`, `@switch`) placed directly inside certain elements (a
+  `<button>` was the case that broke) can throw a hard `NG0500` hydration mismatch at
+  runtime ("expected a comment node but found a text node"), because SSR emits plain text
+  at that position while client hydration expects an anchor comment. This isn't just a
+  console warning — it's a thrown `RuntimeError` that appears to abort hydration for the
+  whole component, silently breaking event bindings (a submit handler stopped firing
+  entirely). Fix: wrap control-flow content in its own child element (e.g. `<span>`)
+  rather than making it the element's only/direct children.
+- After adding a new npm dependency, `ng serve`'s Vite dev server can wedge itself with
+  "There is a new version of the pre-bundle... a page reload is going to ask for it" and
+  never recover on its own (SSR module evaluation throws on every subsequent request,
+  serving stale output indefinitely). Fix: stop the dev server, delete `.angular/cache`,
+  restart. Don't waste time debugging "my change isn't showing up" against a dev server
+  that's been running since before a dependency was added — restart it after any
+  `npm install`.

@@ -7,6 +7,14 @@
   gap: 56px;
   background: var(--bg-panel);
 }
+.hp-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
 .contact-panel h2 {
   font-family: var(--font-display);
   font-size: clamp(28px, 3.2vw, 38px);
@@ -64,6 +72,11 @@
   outline: 2px solid var(--accent);
   outline-offset: 1px;
   border-color: var(--accent);
+}
+.field-error {
+  margin: 12px 0 0;
+  font-size: 15px;
+  color: var(--accent);
 }
 
 @media (max-width: 860px) {

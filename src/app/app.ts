@@ -1,11 +1,19 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, Renderer2, afterNextRender, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import emailjs from '@emailjs/browser';
 
 const SITE_URL = 'https://mannysantelices.github.io/mannysantelices-portfolio/';
 const SITE_TITLE = 'Manny Santelices, Software Architect and DevOps Engineer';
 const SITE_DESCRIPTION =
   'Manny Santelices is a software architect, DevOps engineer, and web developer specializing in Node.js, TypeScript, Angular, PHP, and AWS cloud infrastructure, with a practice built around DevSecFinOps.';
+
+// EmailJS keys are public by design (client-side send, rate-limited per account) — safe to ship in the bundle.
+const EMAILJS_SERVICE_ID = 'service_lv1kk7h';
+const EMAILJS_TEMPLATE_ID = 'template_xrvhifc';
+const EMAILJS_PUBLIC_KEY = '-5ERXyNbq1UevCa8i';
+
+type SendState = 'idle' | 'sending' | 'sent' | 'error';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +29,7 @@ export class App {
   private readonly metaService = inject(Meta);
 
   protected readonly isDark = signal(false);
+  protected readonly sendState = signal<SendState>('idle');
 
   constructor() {
     this.setSeoTags();
@@ -34,6 +43,29 @@ export class App {
     this.document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     this.isDark.set(next === 'dark');
+  }
+
+  sendMessage(event: Event): void {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+
+    // Honeypot: real users never fill this hidden field; bots that auto-fill every field do.
+    const honeypot = new FormData(form).get('company');
+    if (honeypot) {
+      this.sendState.set('sent');
+      form.reset();
+      return;
+    }
+
+    this.sendState.set('sending');
+
+    emailjs
+      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, { publicKey: EMAILJS_PUBLIC_KEY })
+      .then(() => {
+        this.sendState.set('sent');
+        form.reset();
+      })
+      .catch(() => this.sendState.set('error'));
   }
 
   private setUpScrollReveal(): void {
