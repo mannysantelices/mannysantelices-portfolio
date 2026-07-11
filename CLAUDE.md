@@ -87,3 +87,17 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
   `isPlatformBrowser` but doesn't polyfill either API, so unguarded calls throw in unit
   tests. Pair scroll-reveal with a `setTimeout` fallback that force-reveals content, so
   nothing stays permanently invisible if the observer never fires.
+- DOM-dependent post-render logic (scroll-reveal, measuring elements, etc.) must live in
+  `afterNextRender(...)` from `@angular/core`, not `ngAfterViewInit`. With SSR + hydration,
+  `ngAfterViewInit` can fire before Angular's hydration/re-render settles, so a
+  `NodeList` captured via `querySelectorAll` at that point can go stale (`isConnected ===
+  false`) by the time an async callback (e.g. an `IntersectionObserver` or `setTimeout`)
+  runs against it — mutations silently land on detached nodes. Re-query fresh elements
+  inside any deferred callback rather than closing over an early reference; confirmed via
+  this exact bug on `ng serve` (dev-mode hydration timing), verified fixed by switching to
+  `afterNextRender` and re-querying in the fallback.
+- The CSP `script-src` must include `'unsafe-inline'` — Angular SSR emits small inline
+  bootstrap scripts (the hydration event-dispatch contract, transfer-state) whose content
+  differs per build/page, so hash-allowlisting isn't practical, and GitHub Pages can't
+  inject a per-request nonce since it's static hosting. Blocking them doesn't break
+  hydration outright but does silently drop Angular's early-event-replay mechanism.

@@ -1,5 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Component, PLATFORM_ID, Renderer2, inject, signal } from '@angular/core';
+import { Component, PLATFORM_ID, Renderer2, afterNextRender, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 const SITE_URL = 'https://mannysantelices.github.io/mannysantelices-portfolio/';
@@ -13,7 +13,7 @@ const SITE_DESCRIPTION =
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App implements AfterViewInit {
+export class App {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly renderer = inject(Renderer2);
   private readonly document = inject(DOCUMENT);
@@ -25,6 +25,7 @@ export class App implements AfterViewInit {
   constructor() {
     this.setSeoTags();
     this.initTheme();
+    afterNextRender(() => this.setUpScrollReveal());
   }
 
   toggleTheme(): void {
@@ -35,12 +36,11 @@ export class App implements AfterViewInit {
     this.isDark.set(next === 'dark');
   }
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platformId)) return;
-    const els = this.document.querySelectorAll('.reveal');
+  private setUpScrollReveal(): void {
+    const revealAll = () => this.document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
 
     if (typeof IntersectionObserver !== 'function') {
-      els.forEach((el) => el.classList.add('in'));
+      revealAll();
       return;
     }
 
@@ -55,11 +55,11 @@ export class App implements AfterViewInit {
       },
       { threshold: 0.12 },
     );
-    els.forEach((el) => io.observe(el));
+    this.document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
     // Safety net: never leave content invisible if intersection never fires.
     setTimeout(() => {
-      els.forEach((el) => el.classList.add('in'));
+      revealAll();
       io.disconnect();
     }, 2000);
   }
@@ -104,6 +104,11 @@ export class App implements AfterViewInit {
       name: 'Manny Santelices',
       jobTitle: 'Software Architect, DevOps Engineer & Web Developer',
       url: SITE_URL,
+      email: 'mailto:manny.santelices01@gmail.com',
+      sameAs: [
+        'https://github.com/mannysantelices',
+        'https://www.linkedin.com/in/manny-santelices-08a598163',
+      ],
       knowsAbout: [
         'Node.js',
         'TypeScript',
