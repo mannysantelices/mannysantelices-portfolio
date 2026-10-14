@@ -2,7 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mannysantelices.github.io/mannysantelices-portfolio/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://mannysantelices.github.io/mannysantelices-portfolio/website-creation/</loc>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://mannysantelices.github.io/mannysantelices-portfolio/website-improvement/</loc>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://mannysantelices.github.io/mannysantelices-portfolio/devsecops-consulting/</loc>
+    <lastmod>2026-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://mannysantelices.github.io/mannysantelices-portfolio/about/</loc>
+    <lastmod>2026-10-13</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,18 @@
+<app-page-hero [copy]="hero" />
+
+<app-page-section [copy]="servicesSection">
+  <app-service-cards />
+</app-page-section>
+
+<app-page-section [copy]="howSection">
+  <app-card-grid [cards]="howCards" [columns]="3" />
+</app-page-section>
+
+<app-page-section [copy]="aboutSection">
+  <div class="prose reveal">
+    <p>{{ about.body }}</p>
+    <p>
+      <a class="text-link" [routerLink]="aboutPath">{{ about.linkLabel }}</a>
+    </p>
+  </div>
+</app-page-section>

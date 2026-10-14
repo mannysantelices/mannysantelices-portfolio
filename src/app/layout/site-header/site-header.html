@@ -1,0 +1,64 @@
+<header class="site-header" (keydown.escape)="closeMenuAndRefocus()" (focusout)="onFocusOut($event)">
+  <div class="nav-inner">
+    <a
+      class="nav-mark"
+      routerLink="/"
+      routerLinkActive
+      ariaCurrentWhenActive="page"
+      [routerLinkActiveOptions]="exactMatch"
+      (click)="closeMenu()"
+      ><span class="wm-a">{{ wordmark.first }}</span>&ngsp;<span class="wm-b">{{ wordmark.rest }}</span></a
+    >
+
+    <button
+      #menuButton
+      class="nav-toggle"
+      type="button"
+      aria-label="Menu"
+      aria-controls="nav-menu"
+      [attr.aria-expanded]="isMenuOpen()"
+      (click)="toggleMenu()"
+    >
+      <span class="toggle-icon" aria-hidden="true">
+        <svg class="icon-menu" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+        <svg class="icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+      </span>
+    </button>
+
+    <div class="nav-menu" id="nav-menu" [class.open]="isMenuOpen()" [attr.inert]="menuInert()">
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          @for (link of links; track link.path) {
+            <li>
+              <a
+                [routerLink]="link.path"
+                routerLinkActive
+                ariaCurrentWhenActive="page"
+                [routerLinkActiveOptions]="exactMatch"
+                (click)="closeMenu()"
+                >{{ link.label }}</a
+              >
+            </li>
+          }
+        </ul>
+      </nav>
+      <div class="nav-right">
+        <button
+          class="theme-toggle"
+          type="button"
+          aria-label="Dark theme"
+          [attr.aria-pressed]="theme.isDark()"
+          (click)="theme.toggle()"
+        >
+          <span class="toggle-icon" aria-hidden="true">
+            <svg class="icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg>
+            <svg class="icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg>
+          </span>
+        </button>
+        <a class="nav-cta" [routerLink]="currentPath()" [fragment]="contactFragment" (click)="closeMenu()">{{
+          contactLabel
+        }}</a>
+      </div>
+    </div>
+  </div>
+</header>

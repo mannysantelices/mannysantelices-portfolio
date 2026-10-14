@@ -1,0 +1,17 @@
+<div class="practice-grid reveal" [class.cols-3]="columns() === 3">
+  @for (card of cards(); track card.title) {
+    <article class="practice-card">
+      <h3>{{ card.title }}</h3>
+      @if (card.body; as body) {
+        <p>{{ body }}</p>
+      }
+      @if (card.points; as points) {
+        <ul>
+          @for (point of points; track point) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+      }
+    </article>
+  }
+</div>

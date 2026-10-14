@@ -1,0 +1,45 @@
+.btn {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn-primary:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+/* Sending: the button keeps focus, so it is not `disabled`; it only stops looking pressable. */
+.btn[aria-disabled='true'] {
+  cursor: default;
+}
+.btn-primary[aria-disabled='true']:hover {
+  background: var(--accent);
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover {
+    transform: none;
+  }
+}

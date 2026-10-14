@@ -4,8 +4,44 @@ This file provides guidance to Claude Code when working in this repository.
 
 ## Project
 
-Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pages via
+Five-page services site for Santelices Systems (latest Angular, standalone APIs), fully
+prerendered (`outputMode: "static"`) and deployed to GitHub Pages via
 `.github/workflows/deploy.yml`. Node version pinned in `.nvmrc`.
+
+## Routes
+
+`/`, `/website-creation/`, `/website-improvement/`, `/devsecops-consulting/`, `/about/`.
+Canonical URLs end in a slash. There is no `/contact/` route (the contact section is the last
+child of `<main>` on every route) and no wildcard route (`public/404.html` answers unknown
+paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
+`core/seo/page-meta.data.ts`, the JSON-LD graph, `public/sitemap.xml`, `public/404.html` links.
+
+## Structure
+
+- `src/app/core/site/` — typed data: `site.config.ts` (business name, origin, base path,
+  contact details, social image), `services.data.ts`, `tiers.data.ts`, `tools.data.ts`,
+  `nav.data.ts`, `founder.data.ts`. A name or URL is typed once, here.
+- `src/app/core/seo/` — per-route title, meta, canonical and JSON-LD, driven by route data.
+- `src/app/core/{navigation,reveal,theme}/` — shell-wide behaviour.
+- `src/app/layout/` — header, footer, icon sprite.
+- `src/app/shared/` — page building blocks: `page-hero`, `page-section`, `card-grid`,
+  `steps`, `related-services`, and their types in `content.model.ts`.
+- `src/app/features/<page>/` — one folder per page: `<page>.copy.ts` (wording, verbatim from
+  the approved copy deck), the page component, and page-only components. `features/contact/`
+  is the shared contact section and form.
+- `src/styles/` — one partial per component group, listed in `src/styles.scss`.
+- Components compose only; wording and data live in `*.copy.ts` / `*.data.ts`. Files stay
+  under ~200 lines, functions under ~30.
+
+## Commands
+
+- `npm test -- --watch=false` — unit tests once (Vitest); exits non-zero on failure.
+- `npx ng build --base-href /mannysantelices-portfolio/` — production build; output in
+  `dist/mannysantelices-portfolio/browser` with one `index.html` per route.
+- `test -f dist/mannysantelices-portfolio/browser/index.html && rm dist/mannysantelices-portfolio/browser/index.csr.html`
+  — run after every build before checking or serving the output; it is the same command as
+  the workflow's "Remove client-rendered shell" step.
+- `npm audit --omit=dev --audit-level=high` — must exit 0.
 
 ## Standards
 
@@ -59,8 +95,12 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
 
 ## Deploy
 
-- `npx ng build --base-href /mannysantelices-portfolio/` matches the GitHub Pages path —
-  keep this base-href in sync with the repo name if the repo is ever renamed.
+- `npx ng build --base-href /mannysantelices-portfolio/` matches the GitHub Pages path. The
+  base path is also in `core/site/site.config.ts` (`BASE_PATH`), `public/404.html`,
+  `public/sitemap.xml` and `public/robots.txt` — change all of them together if the repo is
+  ever renamed.
+- The workflow tests, then builds, removes `index.csr.html`, then uploads `dist/mannysantelices-portfolio/browser`.
+  Actions are pinned to commit SHAs; `.github/dependabot.yml` keeps them and npm current.
 - GitHub Pages source must be set to "GitHub Actions" in repo Settings → Pages (manual,
   one-time step, not automatable via git).
 
@@ -129,3 +169,21 @@ Angular portfolio site (latest Angular, standalone APIs), deployed to GitHub Pag
   for narrow widths. Always confirm `window.innerWidth` matches the requested value
   before trusting a "no overflow" or "element hidden" result from a mobile emulation
   test.
+- Under `<base href>` a bare `href="#contact"` points at the home page, not the current one.
+  Every same-page link is `[routerLink]="currentPath()" [fragment]="..."` (path from
+  `CurrentRouteService`); fragment targets carry `tabindex="-1"`.
+- Angular drops whitespace between adjacent inline elements; write `&ngsp;` where a space
+  between two elements must survive.
+- The build always emits `index.csr.html` (the un-prerendered shell) next to the prerendered
+  pages when a server entry exists; `@angular/build` has no option to turn it off. Nothing
+  links to it. It is removed after the build (see Commands); the workflow does the same
+  before the upload. An npm `postbuild` script would not run for `npx ng build`.
+- `public/404.html` is a static file outside the app: it carries its own copy of the colour
+  tokens and cannot load the hashed font files. Update it by hand when tokens, navigation
+  labels or the footer line change.
+- Unapproved copy must not be in the source at all: a flag that hides it from the HTML still
+  ships the strings in the JS bundle. The tier "Typical scope" lists are held in marketing's
+  copy deck until the owner approves them.
+- `SOCIAL_IMAGE` in `site.config.ts` points at an interim image with no text; its `alt` must
+  describe what the file really shows, so change both together.
+- `public/sitemap.xml` `lastmod` is the date a page's content last changed, not the build date.

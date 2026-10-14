@@ -1,0 +1,66 @@
+@use 'breakpoints' as bp;
+
+/* Content-info landmark, outside <main>. Stacked by default; the links form one row from
+   1000 px and sit beside line 1 from 1280 px. */
+.site-footer {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding: 40px var(--gutter) 56px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--ink-faint);
+}
+.site-footer p {
+  margin: 0;
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 24px;
+}
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink-dim);
+  text-decoration: none;
+}
+.footer-nav a:hover {
+  text-decoration: underline;
+}
+.footer-nav a[aria-current='page'] {
+  color: var(--ink);
+}
+
+@media (min-width: bp.$cols3) and (max-width: bp.$cols3-below-footer-row) {
+  .footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0 16px;
+  }
+}
+
+@media (min-width: bp.$footer-row) {
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+  .footer-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+    margin: 0;
+  }
+  .footer-legal {
+    flex-basis: 100%;
+  }
+}

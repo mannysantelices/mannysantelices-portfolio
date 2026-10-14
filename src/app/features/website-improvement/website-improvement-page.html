@@ -1,0 +1,17 @@
+<app-page-hero [copy]="hero" />
+
+<app-page-section [copy]="areasSection">
+  <app-card-grid [cards]="areaCards" />
+</app-page-section>
+
+<app-page-section [copy]="tiersSection">
+  <app-tier-cards />
+</app-page-section>
+
+<app-page-section [copy]="stepsSection">
+  <app-steps [steps]="steps" [contactLinkLabel]="stepsLink" />
+</app-page-section>
+
+<app-page-section [copy]="relatedSection">
+  <app-related-services [currentPageId]="hero.pageId" />
+</app-page-section>

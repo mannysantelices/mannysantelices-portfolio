@@ -1,0 +1,72 @@
+@use 'breakpoints' as bp;
+
+/*
+ * Collapsed header, below 1200 px: wordmark and menu button in the bar, everything else in a
+ * disclosure panel. `visibility: hidden` is what takes the closed panel's controls out of the
+ * Tab order and the accessibility tree; do not replace it with opacity or max-height alone.
+ */
+@media (max-width: bp.$nav-below) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+    padding: 8px var(--gutter) 20px;
+    max-height: calc(100dvh - var(--header-h));
+    overflow-y: auto;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line-strong);
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      opacity 0.15s ease,
+      visibility 0s linear 0.15s;
+  }
+  .nav-menu.open {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+  }
+
+  .nav-links {
+    display: block;
+  }
+  .nav-links a {
+    display: flex;
+    width: 100%;
+    height: auto;
+    min-height: 48px;
+    font-size: 17px;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-links a[aria-current='page'] {
+    box-shadow: inset 2px 0 0 var(--accent);
+    padding-left: 12px;
+  }
+
+  .nav-right {
+    margin-top: 16px;
+  }
+  .nav-cta {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* A menu button that cannot work is worse than none; the footer navigation carries the links. */
+@media (max-width: bp.$nav-below) and (scripting: none) {
+  .nav-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: bp.$nav-below) and (prefers-reduced-motion: reduce) {
+  .nav-menu {
+    transition: none;
+  }
+}

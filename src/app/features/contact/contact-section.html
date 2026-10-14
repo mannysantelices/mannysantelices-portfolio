@@ -1,0 +1,23 @@
+<section id="contact" class="wrap" aria-labelledby="contact-h" tabindex="-1">
+  <div class="contact-panel reveal">
+    <div class="contact-copy">
+      <h2 id="contact-h">Tell us what you need</h2>
+      <p>
+        Ask about website creation, website improvement or DevSecOps consulting. Tell us what you
+        have and what you need, and we will reply by email.
+      </p>
+      <div class="contact-links">
+        <a [href]="mailtoHref">Email <span aria-hidden="true">&rarr;</span></a>
+        <a [href]="linkedinUrl" target="_blank" rel="noopener noreferrer"
+          ><span>LinkedIn<span class="visually-hidden"> (opens in new tab)</span></span>
+          <span aria-hidden="true">&nearr;</span></a
+        >
+        <a [href]="githubUrl" target="_blank" rel="noopener noreferrer"
+          ><span>GitHub<span class="visually-hidden"> (opens in new tab)</span></span>
+          <span aria-hidden="true">&nearr;</span></a
+        >
+      </div>
+    </div>
+    <app-contact-form />
+  </div>
+</section>

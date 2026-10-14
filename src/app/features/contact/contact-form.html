@@ -1,0 +1,118 @@
+<form
+  #form
+  class="contact-form"
+  method="dialog"
+  [attr.novalidate]="isHydrated() ? '' : null"
+  (submit)="onSubmit($event, form)"
+>
+  <div
+    #statusRegion
+    id="cf-status"
+    class="form-status"
+    role="status"
+    tabindex="-1"
+    [class.is-filled]="isSent()"
+  >
+    @if (isSent()) {
+      <svg class="form-status-icon" aria-hidden="true" focusable="false">
+        <use href="#icon-check"></use>
+      </svg>
+      <p class="form-status-title">Your message was sent</p>
+      <p class="form-status-body">Thank you. We will reply by email to the address you gave.</p>
+    }
+  </div>
+
+  <div class="form-fields" [hidden]="isSent()">
+    <div class="hp-wrap" aria-hidden="true">
+      <input type="text" name="hp_k7q" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <div class="field">
+      <label for="cf-name">Name</label>
+      <input
+        id="cf-name"
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength="100"
+        [readOnly]="isSending()"
+        [class.is-invalid]="!!errors().name"
+        [attr.aria-invalid]="errors().name ? 'true' : null"
+        [attr.aria-describedby]="errors().name ? 'cf-name-err' : null"
+        (input)="clearError('name')"
+      />
+      @if (errors().name; as message) {
+        <p class="field-error" id="cf-name-err">{{ message }}</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="cf-email">Email</label>
+      <input
+        id="cf-email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        autocapitalize="none"
+        spellcheck="false"
+        placeholder="you@company.com"
+        required
+        maxlength="254"
+        [readOnly]="isSending()"
+        [class.is-invalid]="!!errors().email"
+        [attr.aria-invalid]="errors().email ? 'true' : null"
+        [attr.aria-describedby]="errors().email ? 'cf-email-err' : null"
+        (input)="clearError('email')"
+      />
+      @if (errors().email; as message) {
+        <p class="field-error" id="cf-email-err">{{ message }}</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="cf-message">Message</label>
+      <textarea
+        id="cf-message"
+        name="message"
+        rows="5"
+        placeholder="What do you need help with?"
+        required
+        maxlength="4000"
+        [readOnly]="isSending()"
+        [class.is-invalid]="!!errors().message"
+        [attr.aria-invalid]="errors().message ? 'true' : null"
+        [attr.aria-describedby]="errors().message ? 'cf-message-err' : null"
+        (input)="clearError('message')"
+      ></textarea>
+      @if (errors().message; as message) {
+        <p class="field-error" id="cf-message-err">{{ message }}</p>
+      }
+    </div>
+
+    <div id="cf-error" class="form-alert" role="alert" [class.is-filled]="hasFailed()">
+      @if (hasFailed()) {
+        <p>
+          Your message was not sent. What you typed is still here. Try again, or
+          <a [href]="mailtoHref">email us</a>.
+        </p>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-primary form-submit"
+      [attr.aria-disabled]="isSending() ? 'true' : null"
+    >
+      <span>{{ submitLabel() }}</span>
+    </button>
+
+    <!-- Shown only with scripting disabled (CSS `scripting: none`). A <noscript> element is
+         avoided: its content parses as text when scripting is on, which breaks hydration. -->
+    <p class="form-alert form-noscript">
+      This form needs JavaScript to send. To reach us without it,
+      <a [href]="mailtoHref">email us</a>.
+    </p>
+  </div>
+</form>

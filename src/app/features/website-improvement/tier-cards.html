@@ -1,0 +1,25 @@
+<ul class="practice-grid cols-3 tier-grid reveal" role="list">
+  @for (tier of tiers; track tier.name) {
+    <li class="tier-card">
+      <h3>{{ tier.name }}</h3>
+      <p class="tier-summary">{{ tier.summary }}</p>
+      <dl>
+        <dt>{{ labels.audience }}</dt>
+        <dd>{{ tier.audience }}</dd>
+      </dl>
+      <a class="text-link" [routerLink]="currentPath()" [fragment]="contactFragment">{{
+        tier.linkLabel
+      }}</a>
+    </li>
+  }
+</ul>
+
+<div class="tier-note reveal">
+  <div>
+    <h3>{{ between.title }}</h3>
+    <p>{{ between.body }}</p>
+  </div>
+  <a class="text-link" [routerLink]="currentPath()" [fragment]="contactFragment">{{
+    between.linkLabel
+  }}</a>
+</div>

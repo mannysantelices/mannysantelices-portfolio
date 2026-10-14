@@ -1,0 +1,17 @@
+<div class="practice-grid cols-3 reveal">
+  @for (card of cards; track card.service.id) {
+    <article class="practice-card service-card">
+      <div class="glyph" aria-hidden="true">{{ card.glyph }}</div>
+      <h3>
+        <a [routerLink]="'/' + card.service.path">{{ card.service.name }}</a>
+      </h3>
+      <p>{{ card.service.summary }}</p>
+      <ul>
+        @for (point of card.points; track point) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+      <a class="text-link" [routerLink]="'/' + card.service.path">{{ card.linkLabel }}</a>
+    </article>
+  }
+</div>
