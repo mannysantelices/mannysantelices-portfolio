@@ -8,7 +8,7 @@ const TWITTER_CARD: string = 'summary_large_image';
 
 function openGraphTags(meta: PageMeta, canonical: string, imageUrl: string): MetaDefinition[] {
   return [
-    { property: 'og:type', content: 'website' },
+    { property: 'og:type', content: meta.ogType ?? 'website' },
     { property: 'og:site_name', content: BUSINESS_NAME },
     { property: 'og:title', content: meta.title },
     { property: 'og:description', content: meta.description },
@@ -40,6 +40,14 @@ export function buildMetaTags(meta: PageMeta, canonical: string): MetaDefinition
     ...openGraphTags(meta, canonical, imageUrl),
     ...twitterTags(meta, imageUrl),
   ];
+}
+
+/** `article:published_time` for an article; `null` tells the caller to remove the tag. */
+export function articlePublishedTag(meta: PageMeta): MetaDefinition | null {
+  if (!meta.publishedDate) {
+    return null;
+  }
+  return { property: 'article:published_time', content: meta.publishedDate };
 }
 
 /** An empty value emits no tag at all: no placeholder verification tag may ship. */

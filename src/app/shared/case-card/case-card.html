@@ -1,0 +1,11 @@
+<article class="case-card reveal">
+  <p class="section-tag">{{ copy.tag }}</p>
+  <h3>{{ copy.title }}</h3>
+  <p>{{ copy.body }}</p>
+  <p class="small">{{ copy.note }}</p>
+  <a class="text-link" [routerLink]="path"
+    ><span>{{ copy.link }}</span
+    ><span class="visually-hidden">: {{ copy.title }}</span
+    >&ngsp;<span aria-hidden="true">&rarr;</span></a
+  >
+</article>

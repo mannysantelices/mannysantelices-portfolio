@@ -58,8 +58,10 @@ function serviceOffer(service: ServiceSummary): JsonLdNode {
   };
 }
 
-export function servicesCatalog(): JsonLdNode {
-  return { '@type': 'OfferCatalog', name: 'Services', itemListElement: SERVICES.map(serviceOffer) };
+/** The three services, then any further offers (the Snapshots on `/`). */
+export function servicesCatalog(moreOffers: readonly JsonLdNode[]): JsonLdNode {
+  const offers: JsonLdNode[] = [...SERVICES.map(serviceOffer), ...moreOffers];
+  return { '@type': 'OfferCatalog', name: 'Services', itemListElement: offers };
 }
 
 /** Tier offers point back at the one service, so no extra Service name needs to be visible. */

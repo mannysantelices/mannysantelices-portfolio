@@ -3,16 +3,23 @@
     <li class="tier-card">
       <h3>{{ tier.name }}</h3>
       <p class="tier-summary">{{ tier.summary }}</p>
-      <dl>
-        <dt>{{ labels.audience }}</dt>
-        <dd>{{ tier.audience }}</dd>
-      </dl>
+      <ul class="check-list tier-scope" role="list">
+        @for (item of tier.scope; track item) {
+          <li>
+            <svg aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+            <span>{{ item }}</span>
+          </li>
+        }
+      </ul>
+      <p class="tier-time">{{ tier.time }}</p>
       <a class="text-link" [routerLink]="currentPath()" [fragment]="contactFragment">{{
         tier.linkLabel
       }}</a>
     </li>
   }
 </ul>
+
+<p class="small tier-footnote reveal">{{ footnote }}</p>
 
 <div class="tier-note reveal">
   <div>

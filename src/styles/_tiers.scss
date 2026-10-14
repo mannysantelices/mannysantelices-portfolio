@@ -22,23 +22,6 @@
   color: var(--ink);
   margin: 0 0 20px;
 }
-.tier-card dl {
-  margin: 0 0 24px;
-}
-.tier-card dt {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 6px;
-}
-.tier-card dd {
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-dim);
-  margin: 0;
-}
 /* Pinned to the bottom, so the three links line up whatever the text length. */
 .tier-card .text-link {
   margin-top: auto;

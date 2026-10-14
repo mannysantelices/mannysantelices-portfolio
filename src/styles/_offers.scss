@@ -1,0 +1,139 @@
+@use 'breakpoints' as bp;
+
+/* Small print under cards and blocks: --ink-dim, never --ink-faint (contrast on raised bands). */
+.small {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+/* Lists with a decorative check glyph; role="list" keeps list semantics in Safari. */
+.check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.check-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+.check-list svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  color: var(--accent-text);
+}
+
+/* ---------- TIER CARDS: scope list and turnaround (site-offer-update) ---------- */
+.tier-scope {
+  margin-bottom: 20px;
+}
+.tier-time {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--ink-dim);
+  margin: 0 0 24px;
+}
+.tier-footnote {
+  max-width: 68ch;
+  margin: 24px 0 0;
+}
+
+/* ---------- SNAPSHOT OFFER CARDS ---------- */
+.offer-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.offer-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.offer-card h3 a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.offer-card h3 a:hover {
+  color: var(--accent-text);
+}
+.offer-card h4 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 24px 0 12px;
+}
+.offer-card p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+.offer-card .offer-lede {
+  color: var(--ink);
+}
+.offer-card p.small {
+  font-size: 15px;
+}
+.offer-card p:last-child {
+  margin-bottom: 0;
+}
+.offer-card .offer-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0 0;
+  padding: 6px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--ink);
+}
+.offer-time svg {
+  width: 16px;
+  height: 16px;
+  color: var(--teal);
+}
+.offer-grid-single {
+  grid-template-columns: 1fr;
+  max-width: 68ch;
+}
+.offer-cta {
+  margin: 32px 0 0;
+}
+
+/* After a card grid: one supporting text link. */
+.section-after {
+  margin: 24px 0 0;
+}
+.section-after .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (max-width: bp.$panel-below) {
+  .offer-grid,
+  .offer-grid-single {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: bp.$sm-below) {
+  .offer-card {
+    padding: 24px;
+  }
+}

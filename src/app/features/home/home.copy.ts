@@ -1,3 +1,4 @@
+import { BOOK_CALL_LABEL } from '../../shared/book-call/book-call.copy';
 import { BUSINESS_NAME } from '../../core/site/site.config';
 import { ContentCard, HeroCopy, SectionCopy } from '../../shared/content.model';
 
@@ -6,7 +7,7 @@ export const HOME_HERO: HeroCopy = {
   pageId: 'home',
   h1: 'New websites, better websites and DevSecOps consulting on AWS',
   lede: `${BUSINESS_NAME} builds new websites, improves the one you already have, and reviews how your team builds and runs software on AWS. We work remotely, with clients anywhere in the world.`,
-  primaryLabel: 'Tell us about your project',
+  primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'See our services',
   secondaryFragment: 'services',
 };
@@ -39,6 +40,19 @@ export const HOME_HOW_CARDS: readonly ContentCard[] = [
     body: 'We agree what will be done before work begins, and tell you if something we find changes that.',
   },
 ];
+
+/** Link under "How we work" to the remote section on About (`remote.tag`). */
+export const HOME_REMOTE_LINK: string = 'How we work remotely';
+
+/**
+ * Case-study section. The copy deck has no h2 for it: "Our work" is the ux spec's working
+ * heading, pending marketing.
+ */
+export const HOME_WORK_SECTION: SectionCopy = {
+  id: 'work',
+  tag: 'Case study',
+  heading: 'Our work',
+};
 
 export const HOME_ABOUT_SECTION: SectionCopy = {
   id: 'about-teaser',

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { PageId } from './core/site/page-id';
 import { AboutPage } from './features/about/about-page';
+import { CaseStudyPage } from './features/case-study/case-study-page';
 import { DevsecopsConsultingPage } from './features/devsecops-consulting/devsecops-consulting-page';
 import { HomePage } from './features/home/home-page';
 import { WebsiteCreationPage } from './features/website-creation/website-creation-page';
@@ -31,4 +32,9 @@ export const routes: Routes = [
     data: pageData('devsecops-consulting'),
   },
   { path: 'about', component: AboutPage, data: pageData('about') },
+  {
+    path: 'case-studies/own-site-rebuild',
+    component: CaseStudyPage,
+    data: pageData('case-study-own-site'),
+  },
 ];

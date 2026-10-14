@@ -8,8 +8,20 @@
   <app-tier-cards />
 </app-page-section>
 
+<app-page-section [copy]="startSection">
+  <app-offer-cards [snapshots]="snapshots" />
+</app-page-section>
+
 <app-page-section [copy]="stepsSection">
   <app-steps [steps]="steps" [contactLinkLabel]="stepsLink" />
+</app-page-section>
+
+<app-page-section [copy]="workSection">
+  <app-case-card />
+</app-page-section>
+
+<app-page-section [copy]="careSection">
+  <app-care-plan />
 </app-page-section>
 
 <app-page-section [copy]="relatedSection">

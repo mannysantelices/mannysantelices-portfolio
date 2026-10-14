@@ -1,3 +1,4 @@
+import { BOOK_CALL_LABEL } from '../../shared/book-call/book-call.copy';
 import { ContentCard, HeroCopy, SectionCopy, Step } from '../../shared/content.model';
 
 /** `/website-improvement/` wording from marketing's copy deck (`improve.*`). Tiers: core/site. */
@@ -5,7 +6,7 @@ export const IMPROVE_HERO: HeroCopy = {
   pageId: 'website-improvement',
   h1: 'Website improvement, from Basic to Enterprise',
   lede: 'We review the website you already have, then improve its speed, security, search visibility and ease of use. The work is scoped in three tiers, so you take on only what your site needs.',
-  primaryLabel: 'Ask about your website',
+  primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'Compare the tiers',
   secondaryFragment: 'tiers',
 };
@@ -39,8 +40,8 @@ export const IMPROVE_AREA_CARDS: readonly ContentCard[] = [
 export const IMPROVE_TIERS_SECTION: SectionCopy = {
   id: 'tiers',
   tag: 'Tiers',
-  heading: 'Three tiers of website improvement',
-  note: 'Each tier describes a size of job, not a fixed package. The scope is agreed with you on enquiry.',
+  heading: 'Three tiers, each building on the last',
+  note: 'Each tier includes everything in the one before it. We work on four areas: speed, security, search visibility and accessibility.',
 };
 
 export const IMPROVE_STEPS_SECTION: SectionCopy = {
@@ -66,6 +67,13 @@ export const IMPROVE_STEPS: readonly Step[] = [
 ];
 
 export const IMPROVE_STEPS_LINK: string = 'Start with a message';
+
+/** Case-study section; same tag and working heading as on home (ux spec 2). */
+export const IMPROVE_WORK_SECTION: SectionCopy = {
+  id: 'work',
+  tag: 'Case study',
+  heading: 'Our work',
+};
 
 export const IMPROVE_RELATED_SECTION: SectionCopy = {
   id: 'related',

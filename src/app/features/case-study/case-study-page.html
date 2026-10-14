@@ -1,0 +1,48 @@
+<app-case-study-hero />
+
+<app-page-section [copy]="problemSection">
+  <div class="prose reveal">
+    <p>{{ problemIntro }}</p>
+    <ul class="prose-list">
+      @for (item of problemItems; track $index) {
+        <li><app-rich-text [segments]="item" /></li>
+      }
+    </ul>
+  </div>
+</app-page-section>
+
+<app-page-section [copy]="approachSection">
+  <ol class="prose prose-list reveal">
+    @for (step of approachSteps; track $index) {
+      <li><app-rich-text [segments]="step" /></li>
+    }
+  </ol>
+</app-page-section>
+
+<app-page-section [copy]="changedSection">
+  <ul class="prose prose-list reveal">
+    @for (item of changedItems; track $index) {
+      <li><app-rich-text [segments]="item" /></li>
+    }
+  </ul>
+</app-page-section>
+
+<app-page-section [copy]="resultsSection">
+  <app-results-table />
+</app-page-section>
+
+<app-page-section [copy]="clientSection">
+  <div class="prose reveal">
+    <ul class="prose-list">
+      @for (item of clientItems; track $index) {
+        <li><app-rich-text [segments]="item" /></li>
+      }
+    </ul>
+    <p><app-rich-text [segments]="snapshotLink" /></p>
+    <p><app-book-call /></p>
+  </div>
+</app-page-section>
+
+<app-page-section [copy]="relatedSection">
+  <app-related-services [currentPageId]="pageId" />
+</app-page-section>

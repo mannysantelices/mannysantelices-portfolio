@@ -1,3 +1,4 @@
+import { BOOK_CALL_LABEL } from '../../shared/book-call/book-call.copy';
 import { ContentCard, HeroCopy, SectionCopy, Step } from '../../shared/content.model';
 
 /** `/website-creation/` wording from marketing's copy deck (`create.*`). */
@@ -5,7 +6,7 @@ export const CREATE_HERO: HeroCopy = {
   pageId: 'website-creation',
   h1: 'Website creation for your business',
   lede: 'We plan, build and launch a new website for your business, shaped around your brand and content, with search engines and enquiries considered from the start.',
-  primaryLabel: 'Ask about a new website',
+  primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'See what you get',
   secondaryFragment: 'what-you-get',
 };

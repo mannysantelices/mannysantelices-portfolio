@@ -1,5 +1,6 @@
 import { PageId } from '../site/page-id';
 import { SERVICES, ServiceSummary } from '../site/services.data';
+import { snapshotFor } from '../site/snapshots.data';
 import { PAGE_META, canonicalUrl } from './page-meta.data';
 import { PageMeta } from './page-meta.model';
 import {
@@ -22,13 +23,16 @@ import {
   reference,
   serviceId,
 } from './structured-data.model';
+import { articleNode, snapshotOffers, snapshotServiceNode } from './structured-data.offers';
 
 function graphOf(nodes: readonly JsonLdNode[]): JsonLdGraph {
   return { '@context': 'https://schema.org', '@graph': nodes };
 }
 
 function homeGraph(): JsonLdGraph {
-  const organization = describedOrganizationNode({ hasOfferCatalog: servicesCatalog() });
+  const organization = describedOrganizationNode({
+    hasOfferCatalog: servicesCatalog(snapshotOffers()),
+  });
   const page = webPageNode(PAGE_META.home, 'WebPage', { about: reference(ORGANIZATION_ID) });
   return graphOf([websiteNode(), organization, page]);
 }
@@ -50,6 +54,16 @@ function serviceExtras(service: ServiceSummary, canonical: string): JsonLdNode {
   return {};
 }
 
+/** The page's main Service, then its Snapshot's Service when the page offers one. */
+function serviceNodes(service: ServiceSummary, canonical: string): JsonLdNode[] {
+  const nodes: JsonLdNode[] = [serviceNode(service, serviceExtras(service, canonical))];
+  const snapshot = snapshotFor(service.id);
+  if (snapshot) {
+    nodes.push(snapshotServiceNode(snapshot));
+  }
+  return nodes;
+}
+
 function serviceGraph(service: ServiceSummary): JsonLdGraph {
   const meta: PageMeta = PAGE_META[service.id];
   const canonical = canonicalUrl(meta);
@@ -60,7 +74,24 @@ function serviceGraph(service: ServiceSummary): JsonLdGraph {
   return graphOf([
     websiteNode(),
     organizationNode(),
-    serviceNode(service, serviceExtras(service, canonical)),
+    ...serviceNodes(service, canonical),
+    breadcrumbNode(meta),
+    page,
+  ]);
+}
+
+/** `/case-studies/own-site-rebuild/` (site-offer-update search spec 2.4). */
+function caseStudyGraph(): JsonLdGraph {
+  const meta: PageMeta = PAGE_META['case-study-own-site'];
+  const canonical = canonicalUrl(meta);
+  const page = webPageNode(meta, 'WebPage', {
+    breadcrumb: reference(breadcrumbId(canonical)),
+    mainEntity: reference(`${canonical}#article`),
+  });
+  return graphOf([
+    websiteNode(),
+    organizationNode(),
+    articleNode(meta),
     breadcrumbNode(meta),
     page,
   ]);
@@ -73,6 +104,9 @@ export function buildGraph(pageId: PageId): JsonLdGraph {
   }
   if (pageId === 'about') {
     return aboutGraph();
+  }
+  if (pageId === 'case-study-own-site') {
+    return caseStudyGraph();
   }
   const service = SERVICES.find((candidate: ServiceSummary) => candidate.id === pageId);
   if (!service) {

@@ -4,8 +4,19 @@
   <app-service-cards />
 </app-page-section>
 
+<app-page-section [copy]="startSection">
+  <app-offer-cards [snapshots]="snapshots" [linkTitles]="true" />
+</app-page-section>
+
 <app-page-section [copy]="howSection">
   <app-card-grid [cards]="howCards" [columns]="3" />
+  <p class="section-after reveal">
+    <a class="text-link" [routerLink]="aboutPath" [fragment]="remoteFragment">{{ remoteLink }}</a>
+  </p>
+</app-page-section>
+
+<app-page-section [copy]="workSection">
+  <app-case-card />
 </app-page-section>
 
 <app-page-section [copy]="aboutSection">

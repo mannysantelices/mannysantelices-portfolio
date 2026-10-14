@@ -23,14 +23,29 @@ describe('WebsiteImprovementPage', () => {
     expect(names).toEqual([...TIER_NAMES]);
   });
 
-  it('says who each tier is for under a label that says so', () => {
+  it('gives each tier four scope items and a typical time', () => {
     const cards = Array.from(page.querySelectorAll('.tier-card'));
 
     expect(cards.length).toBe(TIER_NAMES.length);
     for (const card of cards) {
-      expect(card.querySelector('dt')?.textContent).toBe('Who it is for');
-      expect(card.querySelector('dd')?.textContent?.length).toBeGreaterThan(0);
+      expect(card.querySelectorAll('.tier-scope li').length).toBe(4);
+      expect(card.querySelector('.tier-time')?.textContent).toContain('Typically');
     }
+  });
+
+  it('shows the care plan response times and no working hours or time zone', () => {
+    const care = page.querySelector('#care')?.textContent ?? '';
+
+    expect(care).toContain('We respond within 1 business day.');
+    expect(care).toContain('We respond within 2 business days and finish within 5.');
+    expect(page.textContent?.toLowerCase()).not.toContain('time zone');
+    expect(page.textContent).not.toContain('business hours');
+  });
+
+  it('gives the Website Snapshot card the anchor its structured data points at', () => {
+    expect(page.querySelector('#start #website-snapshot h3')?.textContent).toContain(
+      'Website Snapshot',
+    );
   });
 
   it('shows no price', () => {

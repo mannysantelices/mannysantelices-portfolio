@@ -1,0 +1,35 @@
+<div class="prose reveal">
+  <p>{{ intro }}</p>
+</div>
+<div class="table-scroll reveal" role="region" aria-labelledby="results-caption" tabindex="0">
+  <table class="results-table">
+    <caption id="results-caption">
+      {{
+        caption
+      }}
+    </caption>
+    <thead>
+      <tr>
+        @for (column of columns; track column) {
+          <th scope="col">{{ column }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row[0]) {
+        <tr>
+          @for (cell of row; track $index; let isFirst = $first) {
+            @if (isFirst) {
+              <th scope="row">{{ cell }}</th>
+            } @else {
+              <td>{{ cell }}</td>
+            }
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="prose reveal">
+  <p>{{ notMeasured }}</p>
+</div>

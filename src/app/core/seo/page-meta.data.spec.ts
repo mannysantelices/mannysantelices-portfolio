@@ -12,8 +12,8 @@ function distinctCount(values: readonly string[]): number {
 }
 
 describe('page meta data', () => {
-  it('defines five pages', () => {
-    expect(ALL_PAGE_META.length).toBe(5);
+  it('defines six pages', () => {
+    expect(ALL_PAGE_META.length).toBe(6);
   });
 
   for (const meta of ALL_PAGE_META) {
