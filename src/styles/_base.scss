@@ -31,11 +31,7 @@ body {
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 48px 48px;
+  line-height: 1.65;
 }
 
 a {
@@ -44,7 +40,7 @@ a {
 
 /* Side padding only: block padding belongs to the section, so neither shorthand overrides the other. */
 .wrap {
-  max-width: 1180px;
+  max-width: var(--max-w);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -57,13 +53,13 @@ main section {
 /* The hidden start state exists only once the script has run (see core/reveal). */
 html.reveal-ready .reveal {
   transition:
-    opacity 0.4s ease,
-    transform 0.4s ease;
+    opacity 0.5s var(--ease),
+    transform 0.5s var(--ease);
 }
 
 html.reveal-ready .reveal:not(.in) {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(12px);
 }
 
 .section-head {
@@ -80,27 +76,35 @@ html.reveal-ready .reveal:not(.in) {
   font-family: var(--font-mono);
   font-size: 15px;
   color: var(--accent-text);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin: 0 0 12px;
 }
 
 .section-head h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.4vw, 40px);
+  font-size: clamp(28px, 3vw, 40px);
   font-weight: 600;
   margin: 0;
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 .section-note {
   font-size: 16px;
-  color: var(--ink-faint);
+  color: var(--ink-dim);
   width: 100%;
-  max-width: 100%;
+  max-width: 68ch;
   margin: 0;
+}
+
+/* Every second page section after the hero sits on a full-bleed raised band; the shadow
+   paints the band and the clip keeps it to the section's own height. */
+app-page-section:nth-of-type(even) > section {
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 100vmax var(--bg-raised);
+  clip-path: inset(0 -100vmax);
 }
 
 @media (max-width: bp.$sm-below) {

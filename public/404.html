@@ -13,7 +13,7 @@
   <style>
     /* Colour values copied from src/styles/_tokens.scss; keep the two in step. */
     :root {
-      --bg: #ffffff; --line: rgba(164, 28, 68, 0.18); --grid-line: rgba(32, 19, 22, 0.11);
+      --bg: #fcfaf8; --line: rgba(32, 19, 22, 0.1);
       --ink: #201316; --ink-dim: #5c474b; --ink-faint: #7d676c;
       --accent: #a41c44; --accent-soft: #c22a54; --accent-ink: #ffffff; --accent-text: #a41c44;
       --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -21,15 +21,15 @@
       --gutter: 20px;
     }
     :root[data-theme='dark'] {
-      --bg: #0d0d0d; --line: rgba(226, 120, 148, 0.2); --grid-line: rgba(255, 255, 255, 0.09);
+      --bg: #121010; --line: rgba(244, 240, 238, 0.1);
       --ink: #f4f0ee; --ink-dim: #b9b0ac; --ink-faint: #8c8581;
-      --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #0d0d0d; --accent-text: #e8688c;
+      --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #121010; --accent-text: #e8688c;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme='light']) {
-        --bg: #0d0d0d; --line: rgba(226, 120, 148, 0.2); --grid-line: rgba(255, 255, 255, 0.09);
+        --bg: #121010; --line: rgba(244, 240, 238, 0.1);
         --ink: #f4f0ee; --ink-dim: #b9b0ac; --ink-faint: #8c8581;
-        --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #0d0d0d; --accent-text: #e8688c;
+        --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #121010; --accent-text: #e8688c;
       }
     }
     @media (min-width: 600px) { :root { --gutter: 24px; } }
@@ -37,10 +37,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0; background: var(--bg); color: var(--ink);
-      font-family: var(--font); font-size: 16px; line-height: 1.6;
-      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 48px 48px;
+      font-family: var(--font); font-size: 16px; line-height: 1.65;
     }
     .skip-link:not(:focus) {
       position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
@@ -49,12 +46,12 @@
     .skip-link:focus {
       position: fixed; top: 8px; left: 8px; z-index: 200; padding: 12px 16px;
       background: var(--accent); color: var(--accent-ink); font: 500 16px var(--font);
-      border-radius: 3px; text-decoration: none;
+      border-radius: 8px; text-decoration: none;
     }
     main:focus { outline: none; }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
     .bar { border-bottom: 1px solid var(--line); background: var(--bg); }
-    .inner { max-width: 1180px; margin-inline: auto; padding-inline: var(--gutter); }
+    .inner { max-width: 1200px; margin-inline: auto; padding-inline: var(--gutter); }
     .mark {
       display: inline-flex; align-items: center; gap: 0.28em; min-height: 63px;
       font-size: 18px; line-height: 1; letter-spacing: -0.01em; white-space: nowrap;
@@ -78,7 +75,7 @@
     .frame p { font-size: 17px; color: var(--ink-dim); max-width: 60ch; margin: 0 0 24px; }
     .btn {
       display: inline-flex; align-items: center; min-height: 48px; padding: 12px 24px;
-      border-radius: 3px; background: var(--accent); color: var(--accent-ink);
+      border-radius: 8px; background: var(--accent); color: var(--accent-ink);
       font-weight: 500; text-decoration: none;
     }
     .btn:hover { background: var(--accent-soft); }
@@ -88,7 +85,7 @@
     .frame li a { color: var(--accent-text); text-underline-offset: 3px; }
     .frame li a:hover { color: var(--ink); }
     footer {
-      max-width: 1180px; margin-inline: auto; padding: 40px var(--gutter) 56px;
+      max-width: 1200px; margin-inline: auto; padding: 40px var(--gutter) 56px;
       border-top: 1px solid var(--line);
       font-family: var(--mono); font-size: 15px; color: var(--ink-faint);
     }

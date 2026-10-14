@@ -2,8 +2,9 @@
 
 /* The shared contact section: the panel and its left column. The form is in _contact-form.scss. */
 .contact-panel {
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
   padding: 56px;
   display: grid;
   grid-template-columns: 1fr 1fr;

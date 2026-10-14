@@ -6,11 +6,13 @@
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 .stack-row {
   display: grid;
   grid-template-columns: 260px 1fr;
-  background: var(--bg);
+  background: var(--bg-panel);
 }
 .stack-label {
   padding: 26px 28px;
@@ -70,40 +72,52 @@
 .practice-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  gap: 20px;
 }
 /* Three columns from 1000 px, otherwise one: never two, which leaves an empty cell. */
 .practice-grid.cols-3 {
   grid-template-columns: 1fr;
 }
-.practice-card {
-  background: var(--bg);
-  padding: 36px 34px;
-  transition: background 0.2s ease;
+/* Separate cards; tier cards share the frame (see _tiers.scss) but have no hover state. */
+.practice-card,
+.tier-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
 }
-.practice-card:hover {
-  background: var(--bg-raised);
+.practice-card {
+  transition:
+    transform 0.18s var(--ease),
+    box-shadow 0.18s var(--ease),
+    border-color 0.18s var(--ease);
+}
+@media (hover: hover) {
+  .practice-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+    border-color: var(--line-strong);
+  }
 }
 .practice-card .glyph {
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-text);
   font-family: var(--font-mono);
   font-size: 16px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 .practice-card h3 {
   font-family: var(--font-display);
-  font-size: 21px;
+  font-size: 20px;
+  line-height: 1.3;
   font-weight: 600;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
 }
 .practice-card h3 a {
   color: var(--ink);
@@ -114,7 +128,7 @@
   text-underline-offset: 3px;
 }
 .practice-card p {
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink-dim);
   margin: 0 0 16px;
@@ -131,7 +145,7 @@
   gap: 12px;
 }
 .practice-card li {
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink-dim);
   padding-left: 18px;
@@ -157,8 +171,22 @@
   }
 }
 
-@media (max-width: bp.$panel-below) {
+@media (min-width: bp.$nav) {
   .practice-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: bp.$panel-below) {
+  .practice-grid,
+  .practice-grid.cols-3 {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: bp.$sm-below) {
+  .practice-card,
+  .tier-card {
+    padding: 24px;
   }
 }
