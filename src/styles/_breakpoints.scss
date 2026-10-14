@@ -1,0 +1,12 @@
+// The only breakpoints in use.
+// `$nav` must match DESKTOP_QUERY in app/layout/site-header/site-header.ts.
+$nav: 1200px;
+$nav-below: 1199.98px;
+$cols3: 1000px;
+$cols3-below-footer-row: 1279.98px;
+$footer-row: 1280px;
+$panel-below: 860px;
+$stack-below: 720px;
+$sm: 600px;
+$sm-below: 599.98px;
+$xs-below: 479.98px;

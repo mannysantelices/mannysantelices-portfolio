@@ -1,0 +1,17 @@
+<app-page-hero [copy]="hero" />
+
+<app-page-section [copy]="reviewSection">
+  <app-card-grid [cards]="reviewCards" [columns]="3" />
+</app-page-section>
+
+<app-page-section [copy]="receiveSection">
+  <app-card-grid [cards]="receiveCards" [columns]="3" />
+</app-page-section>
+
+<app-page-section [copy]="stepsSection">
+  <app-steps [steps]="steps" [contactLinkLabel]="stepsLink" />
+</app-page-section>
+
+<app-page-section [copy]="relatedSection">
+  <app-related-services [currentPageId]="hero.pageId" />
+</app-page-section>

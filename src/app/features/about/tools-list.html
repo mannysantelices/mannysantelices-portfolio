@@ -1,0 +1,15 @@
+<div class="stack reveal">
+  @for (row of rows; track row.label; let index = $index) {
+    <div class="stack-row">
+      <div class="stack-label">
+        <span class="idx" aria-hidden="true">{{ rowNumber(index) }}</span>
+        <h3 class="name">{{ row.label }}</h3>
+      </div>
+      <ul class="stack-items">
+        @for (tool of row.tools; track tool) {
+          <li class="chip">{{ tool }}</li>
+        }
+      </ul>
+    </div>
+  }
+</div>

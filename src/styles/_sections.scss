@@ -1,4 +1,6 @@
-/* ---------- SKILLS TOPOLOGY ---------- */
+@use 'breakpoints' as bp;
+
+/* ---------- TOOLS LIST ---------- */
 .stack {
   display: grid;
   gap: 1px;
@@ -27,14 +29,18 @@
   font-size: 18px;
   font-weight: 600;
   font-family: var(--font-display);
+  margin: 0;
 }
 .stack-items {
+  list-style: none;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   gap: 10px;
   padding: 22px 28px;
 }
+/* Chips are not interactive: no hover state. */
 .chip {
   font-size: 15px;
   padding: 8px 15px;
@@ -42,20 +48,13 @@
   border-radius: var(--radius);
   color: var(--ink-dim);
   font-family: var(--font-mono);
-  transition: all 0.15s ease;
   white-space: nowrap;
 }
-.chip:hover {
-  border-color: var(--accent);
-  color: var(--ink);
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-}
 .chip.cert {
-  color: var(--accent);
-  border-color: var(--line-strong);
+  color: var(--accent-text);
 }
 
-@media (max-width: 720px) {
+@media (max-width: bp.$stack-below) {
   .stack-row {
     grid-template-columns: 1fr;
   }
@@ -67,50 +66,7 @@
   }
 }
 
-/* ---------- LANGUAGES ---------- */
-.lang-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-.lang-col h4 {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-faint);
-  margin: 0 0 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--line);
-}
-.lang-col ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.lang-col li {
-  font-size: 17px;
-  font-weight: 500;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-.lang-col li .tag {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--ink-faint);
-}
-@media (max-width: 860px) {
-  .lang-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- PRACTICE / WEB DEV CARDS ---------- */
+/* ---------- CARD GRIDS ---------- */
 .practice-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -118,8 +74,9 @@
   background: var(--line);
   border: 1px solid var(--line);
 }
+/* Three columns from 1000 px, otherwise one: never two, which leaves an empty cell. */
 .practice-grid.cols-3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
 }
 .practice-card {
   background: var(--bg);
@@ -137,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--accent-text);
   font-family: var(--font-mono);
   font-size: 16px;
   margin-bottom: 22px;
@@ -147,6 +104,23 @@
   font-size: 21px;
   font-weight: 600;
   margin: 0 0 14px;
+}
+.practice-card h3 a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.practice-card h3 a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.practice-card p {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+  margin: 0 0 16px;
+}
+.practice-card p:last-child {
+  margin-bottom: 0;
 }
 .practice-card ul {
   margin: 0;
@@ -172,20 +146,19 @@
   height: 1px;
   background: var(--accent);
 }
-.practice-card li strong {
-  color: var(--ink);
-  font-weight: 500;
+/* After the base list rule: same specificity, so order decides. */
+.service-card ul {
+  margin-bottom: 20px;
 }
 
-@media (max-width: 1080px) and (min-width: 861px) {
+@media (min-width: bp.$cols3) {
   .practice-grid.cols-3 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width: 860px) {
-  .practice-grid,
-  .practice-grid.cols-3 {
+@media (max-width: bp.$panel-below) {
+  .practice-grid {
     grid-template-columns: 1fr;
   }
 }

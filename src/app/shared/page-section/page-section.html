@@ -1,0 +1,14 @@
+<section [id]="copy().id" class="wrap" [attr.aria-labelledby]="headingId()" tabindex="-1">
+  <div class="section-head reveal">
+    <div>
+      @if (copy().tag; as tag) {
+        <p class="section-tag">{{ tag }}</p>
+      }
+      <h2 [id]="headingId()">{{ copy().heading }}</h2>
+    </div>
+    @if (copy().note; as note) {
+      <p class="section-note">{{ note }}</p>
+    }
+  </div>
+  <ng-content />
+</section>

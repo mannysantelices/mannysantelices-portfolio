@@ -1,0 +1,15 @@
+<ol class="steps reveal">
+  @for (step of steps(); track step.title; let isLast = $last) {
+    <li>
+      <h3>{{ step.title }}</h3>
+      <p>{{ step.body }}</p>
+      @if (isLast) {
+        <p>
+          <a class="text-link" [routerLink]="currentPath()" [fragment]="contactFragment">{{
+            contactLinkLabel()
+          }}</a>
+        </p>
+      }
+    </li>
+  }
+</ol>

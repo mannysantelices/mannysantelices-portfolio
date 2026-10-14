@@ -1,0 +1,10 @@
+<div class="practice-grid reveal" [class.cols-3]="services().length === 3">
+  @for (service of services(); track service.id) {
+    <article class="practice-card related-card">
+      <h3>
+        <a [routerLink]="'/' + service.path">{{ service.name }}</a>
+      </h3>
+      <p>{{ service.relatedLine }}</p>
+    </article>
+  }
+</div>

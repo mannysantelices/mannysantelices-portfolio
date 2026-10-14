@@ -1,0 +1,24 @@
+<section class="hero wrap" aria-labelledby="page-title">
+  <div class="hero-inner">
+    @if (breadcrumbLabel(); as label) {
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="homeLink.path">{{ homeLink.label }}</a>
+          </li>
+          <li aria-current="page">{{ label }}</li>
+        </ol>
+      </nav>
+    }
+    <h1 id="page-title">{{ copy().h1 }}</h1>
+    <p class="hero-sub">{{ copy().lede }}</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" [routerLink]="currentPath()" [fragment]="contactFragment">{{
+        copy().primaryLabel
+      }}</a>
+      <a class="btn btn-ghost" [routerLink]="currentPath()" [fragment]="copy().secondaryFragment">{{
+        copy().secondaryLabel
+      }}</a>
+    </div>
+  </div>
+</section>

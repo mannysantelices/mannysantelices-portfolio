@@ -1,0 +1,18 @@
+<app-page-hero [copy]="hero" />
+
+<app-page-section [copy]="backgroundSection">
+  <div class="prose reveal">
+    @for (paragraph of backgroundParagraphs; track paragraph) {
+      <p>{{ paragraph }}</p>
+    }
+    <p class="credential"><span class="chip cert">{{ credential }}</span></p>
+  </div>
+</app-page-section>
+
+<app-page-section [copy]="toolsSection">
+  <app-tools-list />
+</app-page-section>
+
+<app-page-section [copy]="relatedSection">
+  <app-related-services [currentPageId]="hero.pageId" />
+</app-page-section>

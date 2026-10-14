@@ -5,40 +5,61 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Default for every job: read the repository, nothing else.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
+# One Pages deployment at a time; a newer run waits instead of cancelling one in flight.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .nvmrc
           cache: npm
 
       - run: npm ci
 
-      - run: npx ng build --base-href /mannysantelices-portfolio/
+      # Confirmed by the developer: runs once without watch mode and exits non-zero on a
+      # failing test, so a failure stops the workflow before the build.
+      - name: Test
+        run: npm test -- --watch=false
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Build
+        run: npx ng build --base-href /mannysantelices-portfolio/
+
+      # The build always emits the un-prerendered shell and has no option to suppress it.
+      # It must not be published; fail if the prerendered home page is missing.
+      - name: Remove client-rendered shell
+        run: |
+          if ! test -f dist/mannysantelices-portfolio/browser/index.html; then
+            echo "::error::Prerendered index.html is missing from dist/mannysantelices-portfolio/browser; the build did not prerender the home page."
+            exit 1
+          fi
+          rm dist/mannysantelices-portfolio/browser/index.csr.html
+
+      # Confirmed by the developer: with `outputMode: "static"` the build writes the site here.
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: dist/mannysantelices-portfolio/browser
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # Deploy rights live on this job only; the job that runs npm ci does not hold them.
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5

@@ -1,0 +1,22 @@
+<footer class="site-footer">
+  <p class="footer-line">{{ footerLine }}</p>
+  <nav class="footer-nav" aria-label="Footer">
+    <ul>
+      @for (link of links; track link.path) {
+        <li>
+          <a
+            [routerLink]="link.path"
+            routerLinkActive
+            ariaCurrentWhenActive="page"
+            [routerLinkActiveOptions]="exactMatch"
+            >{{ link.label }}</a
+          >
+        </li>
+      }
+      <li>
+        <a [routerLink]="currentPath()" [fragment]="contactFragment">{{ contactLabel }}</a>
+      </li>
+    </ul>
+  </nav>
+  <p class="footer-legal">&copy; {{ year }} {{ businessName }}</p>
+</footer>

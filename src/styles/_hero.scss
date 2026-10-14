@@ -1,16 +1,18 @@
+@use 'breakpoints' as bp;
+
+/* Block padding only, so the content keeps the `.wrap` gutter at every width. */
 .hero {
   position: relative;
-  padding: 190px 0 50px;
-  overflow: hidden;
+  padding-block: calc(var(--header-h) + 24px) 32px;
 }
 
+/* One short entrance with no delay; it ends visible, so the hero shows without script too. */
 .hero-inner {
   position: relative;
   z-index: 2;
-  padding: 48px;
+  padding: 32px;
   border: 1px solid var(--line);
-  opacity: 0;
-  animation: frame-in 1.1s 0.15s ease forwards;
+  animation: rise 0.4s ease both;
 }
 .hero-inner::before,
 .hero-inner::after {
@@ -32,99 +34,74 @@
   border-bottom: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
 }
-@keyframes frame-in {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
 
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(42px, 6.4vw, 78px);
-  line-height: 1.04;
+  font-size: clamp(32px, 5vw, 60px);
+  line-height: 1.08;
   letter-spacing: -0.01em;
-  margin: 0 0 26px;
+  margin: 0 0 20px;
   text-wrap: balance;
-  max-width: 15ch;
-  opacity: 0;
-  animation: rise 0.8s 0.2s ease forwards;
+  max-width: 24ch;
 }
 .hero h1 em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .hero-sub {
-  font-size: 19px;
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.6;
   color: var(--ink-dim);
-  max-width: 56ch;
-  margin: 0 0 40px;
-  opacity: 0;
-  animation: rise 0.8s 0.34s ease forwards;
-}
-.hero-sub strong {
-  color: var(--ink);
-  font-weight: 500;
+  max-width: 60ch;
+  margin: 0 0 32px;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  opacity: 0;
-  animation: rise 0.8s 0.46s ease forwards;
 }
 
-.btn {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 500;
-  padding: 14px 26px;
-  border-radius: var(--radius);
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.15s ease;
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background: var(--accent);
-  color: var(--accent-ink);
-}
-.btn-primary:hover {
-  background: var(--accent-soft);
-  transform: translateY(-1px);
-}
-.btn-ghost {
-  border-color: var(--line-strong);
-  color: var(--ink);
-}
-.btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.btn:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-@media (max-width: 900px) {
+@media (min-width: bp.$nav) {
   .hero {
-    padding-top: 120px;
+    padding-block: calc(var(--header-h) + 40px) 48px;
+  }
+  .hero-inner {
+    padding: 40px;
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: bp.$sm-below) {
   .hero-inner {
-    padding: 28px;
+    padding: 24px;
+  }
+  .hero h1 {
+    margin-bottom: 16px;
+    max-width: none;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: none;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: bp.$xs-below) {
+  .hero-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-inner {
+    animation: none;
   }
 }
