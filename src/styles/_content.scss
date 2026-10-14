@@ -58,5 +58,12 @@
   margin-top: 24px;
 }
 .credential .chip {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+}
+/* Trust pill: a decorative check, kept out of the accessible text. */
+.credential .chip::before {
+  content: '✓' / '';
 }

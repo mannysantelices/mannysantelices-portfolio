@@ -1,47 +1,26 @@
 @use 'breakpoints' as bp;
 
-/* Block padding only, so the content keeps the `.wrap` gutter at every width. */
+/* Split hero: text first in reading order, the page image second. Block padding only, so the
+   content keeps the `.wrap` gutter at every width. */
 .hero {
   position: relative;
-  padding-block: calc(var(--header-h) + 24px) 32px;
+  padding-block: calc(var(--header-h) + 32px) 56px;
 }
 
 /* One short entrance with no delay; it ends visible, so the hero shows without script too. */
 .hero-inner {
   position: relative;
   z-index: 2;
-  padding: 32px;
-  border: 1px solid var(--line);
-  animation: rise 0.4s ease both;
-}
-.hero-inner::before,
-.hero-inner::after {
-  content: '';
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  pointer-events: none;
-}
-.hero-inner::before {
-  top: -1px;
-  left: -1px;
-  border-top: 2px solid var(--accent);
-  border-left: 2px solid var(--accent);
-}
-.hero-inner::after {
-  bottom: -1px;
-  right: -1px;
-  border-bottom: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
+  animation: rise 0.4s var(--ease) both;
 }
 
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(32px, 5vw, 60px);
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-  margin: 0 0 20px;
+  font-size: clamp(36px, 4.4vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
   text-wrap: balance;
   max-width: 24ch;
 }
@@ -64,19 +43,24 @@
   flex-wrap: wrap;
 }
 
+@media (min-width: bp.$panel-below) {
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+}
+
 @media (min-width: bp.$nav) {
   .hero {
-    padding-block: calc(var(--header-h) + 40px) 48px;
-  }
-  .hero-inner {
-    padding: 40px;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    padding-block: calc(var(--header-h) + 64px) 88px;
   }
 }
 
 @media (max-width: bp.$sm-below) {
-  .hero-inner {
-    padding: 24px;
-  }
   .hero h1 {
     margin-bottom: 16px;
     max-width: none;

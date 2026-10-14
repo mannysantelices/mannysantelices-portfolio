@@ -1,0 +1,92 @@
+@use 'breakpoints' as bp;
+
+/* The hero image frame. No text sits over any image, so no scrim is needed. */
+.hero-media {
+  margin: 32px 0 0;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  background: var(--bg-raised);
+  position: relative;
+  animation: media-in 0.6s 80ms var(--ease) both;
+}
+.hero-media picture {
+  display: contents;
+}
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-media[data-image='home'] img {
+  object-position: 62% 50%;
+}
+.hero-media[data-image='about'] img {
+  object-position: 70% 60%;
+}
+.hero-media[data-image='devsecops'] {
+  aspect-ratio: 16 / 9;
+}
+
+@media (min-width: bp.$panel-below) {
+  .hero-media {
+    margin: 0;
+  }
+}
+
+@media (min-width: bp.$nav) {
+  .hero-media {
+    aspect-ratio: 4 / 3;
+  }
+  .hero-media[data-image='devsecops'],
+  .hero-media[data-image='about'] {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Dark artwork in light theme: a hairline inside the frame. */
+.hero-media[data-tone='dark']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  outline: 1px solid var(--line);
+  outline-offset: -1px;
+  pointer-events: none;
+}
+
+@mixin dark-theme-media {
+  .hero-media[data-tone='dark']::after {
+    content: none;
+  }
+  .hero-media[data-tone='light'] img {
+    filter: brightness(0.92);
+  }
+}
+:root[data-theme='dark'] {
+  @include dark-theme-media;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-theme-media;
+  }
+}
+
+@keyframes media-in {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media {
+    animation: none;
+  }
+}

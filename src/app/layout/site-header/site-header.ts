@@ -18,6 +18,8 @@ import { Wordmark, splitWordmark } from './wordmark';
 
 /** Must match the header breakpoint in `styles/_header-menu.scss`. */
 const DESKTOP_QUERY: string = '(min-width: 1200px)';
+/** Scroll distance after which the header shows its bottom border. */
+const SCROLLED_AFTER_PX: number = 8;
 
 /**
  * Fixed header: wordmark, primary links, theme toggle, contact control. Below 1200 px the links
@@ -27,7 +29,10 @@ const DESKTOP_QUERY: string = '(min-width: 1200px)';
   selector: 'app-site-header',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './site-header.html',
-  host: { '(document:pointerdown)': 'onDocumentPointerDown($event)' },
+  host: {
+    '(document:pointerdown)': 'onDocumentPointerDown($event)',
+    '(window:scroll)': 'onWindowScroll()',
+  },
 })
 export class SiteHeader {
   private readonly document = inject(DOCUMENT);
@@ -43,6 +48,7 @@ export class SiteHeader {
   protected readonly contactFragment = CONTACT_FRAGMENT;
   protected readonly exactMatch = { exact: true };
   protected readonly isMenuOpen = signal<boolean>(false);
+  protected readonly isScrolled = signal<boolean>(false);
 
   /**
    * `inert` is set by script only, never in the served HTML: there it would disable the
@@ -54,7 +60,10 @@ export class SiteHeader {
   });
 
   constructor() {
-    afterNextRender(() => this.watchBreakpoint());
+    afterNextRender(() => {
+      this.watchBreakpoint();
+      this.onWindowScroll();
+    });
   }
 
   protected toggleMenu(): void {
@@ -85,6 +94,14 @@ export class SiteHeader {
     if (target instanceof Node && !this.host.nativeElement.contains(target)) {
       this.closeMenu();
     }
+  }
+
+  protected onWindowScroll(): void {
+    const view = this.document.defaultView;
+    if (!view) {
+      return;
+    }
+    this.isScrolled.set(view.scrollY > SCROLLED_AFTER_PX);
   }
 
   private watchBreakpoint(): void {

@@ -7,13 +7,16 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 32px;
+  gap: 20px;
   counter-reset: step;
 }
 .steps li {
   counter-increment: step;
-  padding: 24px 0;
-  border-top: 1px solid var(--line-strong);
+  padding: 28px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  border-radius: var(--radius-lg);
 }
 /* The number is decoration; the ordered list carries the order. */
 .steps li::before {
@@ -26,18 +29,25 @@
 }
 .steps h3 {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.3;
   font-weight: 600;
   margin: 0 0 8px;
 }
 .steps p {
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.55;
   color: var(--ink-dim);
   margin: 0;
 }
 .steps p + p {
   margin-top: 12px;
+}
+
+@media (max-width: bp.$sm-below) {
+  .steps li {
+    padding: 24px;
+  }
 }
 
 @media (min-width: bp.$cols3) {

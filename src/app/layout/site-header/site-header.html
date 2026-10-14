@@ -1,4 +1,7 @@
-<header class="site-header" (keydown.escape)="closeMenuAndRefocus()" (focusout)="onFocusOut($event)">
+<header
+  class="site-header"
+  [class.is-scrolled]="isScrolled()"
+  (keydown.escape)="closeMenuAndRefocus()" (focusout)="onFocusOut($event)">
   <div class="nav-inner">
     <a
       class="nav-mark"

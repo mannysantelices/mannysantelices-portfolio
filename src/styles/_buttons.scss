@@ -10,18 +10,32 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.15s ease;
+  transition:
+    background 0.18s var(--ease),
+    transform 0.18s var(--ease),
+    box-shadow 0.18s var(--ease),
+    border-color 0.18s var(--ease);
   border: 1px solid transparent;
 }
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
+  box-shadow: var(--shadow-1);
 }
 .btn-primary:hover {
   background: var(--accent-soft);
   transform: translateY(-1px);
 }
+/* Decorative arrow; the empty alternative text keeps it out of the accessible name. */
+.btn-primary::after {
+  content: '→' / '';
+  transition: transform 0.18s var(--ease);
+}
+.btn-primary:hover::after {
+  transform: translateX(2px);
+}
 .btn-ghost {
+  background: var(--bg-panel);
   border-color: var(--line-strong);
   color: var(--ink);
 }
@@ -39,7 +53,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn-primary:hover {
+  .btn-primary:hover,
+  .btn-primary:hover::after {
     transform: none;
   }
 }

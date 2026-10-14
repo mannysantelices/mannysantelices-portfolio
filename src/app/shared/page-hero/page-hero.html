@@ -21,4 +21,20 @@
       }}</a>
     </div>
   </div>
+  <figure class="hero-media" [attr.data-image]="image().name" [attr.data-tone]="image().tone">
+    <picture>
+      <source type="image/webp" [attr.srcset]="webpSrcset()" [attr.sizes]="sizes" />
+      <img
+        [src]="fallbackSrc()"
+        [attr.srcset]="jpegSrcset()"
+        [attr.sizes]="sizes"
+        [alt]="image().alt"
+        [width]="image().width"
+        [height]="image().height"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+  </figure>
 </section>
