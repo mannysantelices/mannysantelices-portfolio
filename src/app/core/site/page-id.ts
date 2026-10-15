@@ -4,4 +4,8 @@ export type PageId =
   | 'website-creation'
   | 'website-improvement'
   | 'devsecops-consulting'
-  | 'about';
+  | 'about'
+  | 'case-study-own-site';
+
+/** Pages that open with the shared image hero. The case study has a text-only hero. */
+export type HeroPageId = Exclude<PageId, 'case-study-own-site'>;

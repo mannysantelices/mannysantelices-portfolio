@@ -1,0 +1,149 @@
+@use 'breakpoints' as bp;
+
+/* ---------- CARE PLAN ---------- */
+.care-plan {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.care-lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 60ch;
+  margin: 0 0 20px;
+}
+.care-response {
+  align-self: start;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.care-response h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+.care-response dl {
+  margin: 0 0 16px;
+  display: grid;
+  gap: 14px;
+}
+.care-response dt {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--accent-text);
+  margin: 0 0 4px;
+}
+.care-response dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.care-response .small {
+  margin: 0;
+}
+
+/* ---------- CASE-STUDY CARD ---------- */
+.case-card {
+  max-width: 760px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.case-card h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 12px;
+}
+.case-card p {
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+.case-card .text-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ---------- REMOTE: how a project runs ---------- */
+.flow-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 48px 0 20px;
+}
+
+/* ---------- CASE-STUDY PAGE ---------- */
+.hero-text-only .hero-inner {
+  max-width: 68ch;
+}
+@media (min-width: bp.$panel-below) {
+  .hero.hero-text-only {
+    display: block;
+  }
+}
+.prose-list {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--ink-dim);
+}
+.prose-list strong {
+  color: var(--ink);
+}
+.table-scroll {
+  margin: 24px 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg-panel);
+}
+.results-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.results-table caption {
+  text-align: left;
+  padding: 16px 20px 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+.results-table th,
+.results-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 20px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-dim);
+}
+.results-table th {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (min-width: bp.$panel-below) {
+  .care-plan {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: bp.$sm-below) {
+  .care-response,
+  .case-card {
+    padding: 24px;
+  }
+}

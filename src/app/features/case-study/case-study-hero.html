@@ -1,0 +1,19 @@
+<section class="hero hero-text-only wrap" aria-labelledby="page-title">
+  <div class="hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li>
+          <a [routerLink]="homeLink.path">{{ homeLink.label }}</a>
+        </li>
+        <li aria-current="page">{{ breadcrumbLabel }}</li>
+      </ol>
+    </nav>
+    <p class="section-tag">{{ copy.tag }}</p>
+    <h1 id="page-title">{{ copy.h1 }}</h1>
+    <p class="hero-sub"><app-rich-text [segments]="copy.lede" /></p>
+    <div class="hero-actions">
+      <app-book-call />
+      <a class="btn btn-ghost" [routerLink]="copy.secondaryPath">{{ copy.secondaryLabel }}</a>
+    </div>
+  </div>
+</section>

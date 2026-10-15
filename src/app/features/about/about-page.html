@@ -5,8 +5,22 @@
     @for (paragraph of backgroundParagraphs; track paragraph) {
       <p>{{ paragraph }}</p>
     }
-    <p class="credential"><span class="chip cert">{{ credential }}</span></p>
+    <p class="credential">
+      <span class="chip cert">{{ credential }}</span>
+    </p>
   </div>
+</app-page-section>
+
+<app-page-section [copy]="remoteSection">
+  <app-card-grid [cards]="remoteCards" [columns]="3" />
+  <h3 class="flow-title reveal">{{ flowTitle }}</h3>
+  <ol class="steps flow-steps reveal">
+    @for (step of flowSteps; track step) {
+      <li>
+        <p>{{ step }}</p>
+      </li>
+    }
+  </ol>
 </app-page-section>
 
 <app-page-section [copy]="toolsSection">

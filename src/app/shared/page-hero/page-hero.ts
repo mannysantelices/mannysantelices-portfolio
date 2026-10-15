@@ -11,7 +11,8 @@ import {
   heroFallbackSrc,
   heroSrcset,
 } from '../../core/site/hero-images.data';
-import { CONTACT_FRAGMENT, HOME_LINK } from '../../core/site/nav.data';
+import { HOME_LINK } from '../../core/site/nav.data';
+import { BOOK_CALL_FRAGMENT } from '../../core/site/site.config';
 import { HeroCopy } from '../content.model';
 
 /**
@@ -29,7 +30,7 @@ export class PageHero implements OnInit {
   readonly copy = input.required<HeroCopy>();
 
   protected readonly currentPath = inject(CurrentRouteService).path;
-  protected readonly contactFragment = CONTACT_FRAGMENT;
+  protected readonly contactFragment = BOOK_CALL_FRAGMENT;
   protected readonly homeLink = HOME_LINK;
   /** Same label as the breadcrumb in the JSON-LD; `null` on the home page, which has no trail. */
   protected readonly breadcrumbLabel = computed<string | null>(() => {

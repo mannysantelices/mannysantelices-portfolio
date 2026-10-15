@@ -1,3 +1,4 @@
+import { BOOK_CALL_LABEL } from '../../shared/book-call/book-call.copy';
 import { ContentCard, HeroCopy, SectionCopy, Step } from '../../shared/content.model';
 
 /** `/devsecops-consulting/` wording from marketing's copy deck (`devsecops.*`). */
@@ -5,7 +6,7 @@ export const DEVSECOPS_HERO: HeroCopy = {
   pageId: 'devsecops-consulting',
   h1: 'DevSecOps consulting on AWS',
   lede: 'We review how your team builds, ships and runs software on AWS, looking at security, reliability and cost together. You receive a prioritised list of what to fix.',
-  primaryLabel: 'Ask about a consultation',
+  primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'See what we review',
   secondaryFragment: 'what-we-review',
 };

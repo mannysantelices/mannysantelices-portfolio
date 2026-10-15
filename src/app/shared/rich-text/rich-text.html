@@ -1,0 +1,9 @@
+@for (segment of segments(); track $index) {
+  @if (textOf(segment); as text) {
+    <span>{{ text }}</span>
+  } @else if (strongOf(segment); as bold) {
+    <strong>{{ bold.strong }}</strong>
+  } @else if (linkOf(segment); as link) {
+    <a class="text-link" [routerLink]="link.path" [fragment]="link.fragment">{{ link.link }}</a>
+  }
+}

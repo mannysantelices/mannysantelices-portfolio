@@ -190,3 +190,48 @@
     padding: 24px;
   }
 }
+
+/* Related service cards: whole card is the link target (stretched link). */
+.related-card {
+  position: relative;
+  cursor: pointer;
+}
+.related-card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.related-card .card-arrow {
+  display: inline-block;
+  color: var(--accent-text);
+  transition: transform 0.18s var(--ease);
+}
+.related-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-2);
+}
+.related-card:hover h3 a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.related-card:hover .card-arrow {
+  transform: translateX(3px);
+}
+.related-card h3 a:focus-visible {
+  outline: none;
+}
+.related-card:has(a:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .related-card,
+  .related-card .card-arrow {
+    transition: none;
+  }
+  .related-card:hover,
+  .related-card:hover .card-arrow {
+    transform: none;
+  }
+}

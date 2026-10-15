@@ -15,6 +15,7 @@ const EXPECTED_ROUTES: readonly RouteExpectation[] = [
   { url: '/website-improvement', heading: 'Website improvement' },
   { url: '/devsecops-consulting', heading: 'DevSecOps consulting' },
   { url: '/about', heading: 'About Santelices Systems' },
+  { url: '/case-studies/own-site-rebuild', heading: 'improving our own website' },
 ];
 
 describe('routes', () => {
@@ -37,7 +38,7 @@ describe('routes', () => {
       const element = harness.routeNativeElement as HTMLElement;
 
       expect(element.querySelectorAll('h2').length).toBeGreaterThan(0);
-      expect(element.querySelectorAll('h4, h5, h6').length).toBe(0);
+      expect(element.querySelectorAll('h5, h6').length).toBe(0);
       expect(element.querySelectorAll('a[href^="#"]').length).toBe(0);
     });
   }

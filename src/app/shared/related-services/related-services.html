@@ -2,7 +2,7 @@
   @for (service of services(); track service.id) {
     <article class="practice-card related-card">
       <h3>
-        <a [routerLink]="'/' + service.path">{{ service.name }}</a>
+        <a [routerLink]="'/' + service.path">{{ service.name }}&ngsp;<span class="card-arrow" aria-hidden="true">&rarr;</span></a>
       </h3>
       <p>{{ service.relatedLine }}</p>
     </article>

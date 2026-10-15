@@ -1,3 +1,4 @@
+import { BOOK_CALL_LABEL } from '../../shared/book-call/book-call.copy';
 import { FOUNDER } from '../../core/site/founder.data';
 import { BUSINESS_NAME } from '../../core/site/site.config';
 import { HeroCopy, SectionCopy } from '../../shared/content.model';
@@ -7,7 +8,7 @@ export const ABOUT_HERO: HeroCopy = {
   pageId: 'about',
   h1: `About ${BUSINESS_NAME}`,
   lede: `${BUSINESS_NAME} is a remote web and DevSecOps services business founded by ${FOUNDER.name}. We build websites, improve existing ones and advise teams running software on AWS, for clients worldwide.`,
-  primaryLabel: 'Get in touch',
+  primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'See our tools',
   secondaryFragment: 'tools',
 };

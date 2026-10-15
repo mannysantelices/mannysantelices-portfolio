@@ -4,13 +4,15 @@ This file provides guidance to Claude Code when working in this repository.
 
 ## Project
 
-Five-page services site for Santelices Systems (latest Angular, standalone APIs), fully
+Six-page services site for Santelices Systems (latest Angular, standalone APIs), fully
 prerendered (`outputMode: "static"`) and deployed to GitHub Pages via
 `.github/workflows/deploy.yml`. Node version pinned in `.nvmrc`.
 
 ## Routes
 
-`/`, `/website-creation/`, `/website-improvement/`, `/devsecops-consulting/`, `/about/`.
+`/`, `/website-creation/`, `/website-improvement/`, `/devsecops-consulting/`, `/about/`,
+`/case-studies/own-site-rebuild/` (footer link only; text-only hero, so `HERO_IMAGES` is keyed by
+`HeroPageId`).
 Canonical URLs end in a slash. There is no `/contact/` route (the contact section is the last
 child of `<main>` on every route) and no wildcard route (`public/404.html` answers unknown
 paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
@@ -182,8 +184,9 @@ paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
   tokens and cannot load the hashed font files. Update it by hand when tokens, navigation
   labels or the footer line change.
 - Unapproved copy must not be in the source at all: a flag that hides it from the HTML still
-  ships the strings in the JS bundle. The tier "Typical scope" lists are held in marketing's
-  copy deck until the owner approves them.
+  ships the strings in the JS bundle.
+- Every "Book a call" link targets `BOOK_CALL_FRAGMENT` (`site.config.ts`) on the current route;
+  swap in a booking URL there and in `shared/book-call` only.
 - `SOCIAL_IMAGE` in `site.config.ts` points at an interim image with no text; its `alt` must
   describe what the file really shows, so change both together.
 - `public/sitemap.xml` `lastmod` is the date a page's content last changed, not the build date.

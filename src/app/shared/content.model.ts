@@ -1,8 +1,8 @@
-import { PageId } from '../core/site/page-id';
+import { HeroPageId } from '../core/site/page-id';
 
 /** Wording for the hero every page starts with. Text comes from marketing's copy deck. */
 export interface HeroCopy {
-  readonly pageId: PageId;
+  readonly pageId: HeroPageId;
   readonly h1: string;
   readonly lede: string;
   readonly primaryLabel: string;
@@ -32,3 +32,19 @@ export interface Step {
 }
 
 export type CardColumns = 2 | 3;
+
+/** Bold lead-in text inside running copy. */
+export interface StrongSegment {
+  readonly strong: string;
+}
+
+/** An internal link inside running copy; `path` is a router path with a leading slash. */
+export interface LinkSegment {
+  readonly link: string;
+  readonly path: string;
+  readonly fragment?: string;
+}
+
+/** One run of text: plain strings, bold lead-ins and internal links, rendered without innerHTML. */
+export type RichSegment = string | StrongSegment | LinkSegment;
+export type RichText = readonly RichSegment[];

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
+import { AWS_SECURITY_SNAPSHOT } from '../../core/site/snapshots.data';
 import { CardGrid } from '../../shared/card-grid/card-grid';
+import { OfferCards } from '../../shared/offer-cards/offer-cards';
+import { START_SECTION_SINGLE } from '../../shared/offer-cards/offer-cards.copy';
 import { PageHero } from '../../shared/page-hero/page-hero';
 import { PageSection } from '../../shared/page-section/page-section';
 import { RelatedServices } from '../../shared/related-services/related-services';
@@ -17,16 +20,18 @@ import {
   DEVSECOPS_STEPS_SECTION,
 } from './devsecops-consulting.copy';
 
-/** `/devsecops-consulting/`: what we review, what you receive, how it starts, related services. */
+/** `/devsecops-consulting/`: review, Snapshot, what you receive, how it starts, related. */
 @Component({
   selector: 'app-devsecops-consulting-page',
-  imports: [CardGrid, PageHero, PageSection, RelatedServices, Steps],
+  imports: [CardGrid, OfferCards, PageHero, PageSection, RelatedServices, Steps],
   templateUrl: './devsecops-consulting-page.html',
 })
 export class DevsecopsConsultingPage {
   protected readonly hero = DEVSECOPS_HERO;
   protected readonly reviewSection = DEVSECOPS_REVIEW_SECTION;
   protected readonly reviewCards = DEVSECOPS_REVIEW_CARDS;
+  protected readonly startSection = START_SECTION_SINGLE;
+  protected readonly snapshots = [AWS_SECURITY_SNAPSHOT];
   protected readonly receiveSection = DEVSECOPS_RECEIVE_SECTION;
   protected readonly receiveCards = DEVSECOPS_RECEIVE_CARDS;
   protected readonly stepsSection = DEVSECOPS_STEPS_SECTION;

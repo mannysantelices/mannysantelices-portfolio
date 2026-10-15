@@ -1,4 +1,4 @@
-import { PageId } from './page-id';
+import { HeroPageId } from './page-id';
 
 /** Light artwork gets a raised frame in dark theme; dark artwork gets an inner outline in light. */
 export type ImageTone = 'light' | 'dark';
@@ -21,7 +21,7 @@ export const HERO_IMAGE_SIZES: string =
   '(min-width: 1200px) 520px, (min-width: 860px) 45vw, calc(100vw - 40px)';
 
 /** Owner-supplied images, cropped, blurred and encoded per the visual refresh specification. */
-export const HERO_IMAGES: Readonly<Record<PageId, HeroImage>> = {
+export const HERO_IMAGES: Readonly<Record<HeroPageId, HeroImage>> = {
   home: {
     name: 'home',
     widths: [480, 800],

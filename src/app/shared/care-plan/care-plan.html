@@ -1,0 +1,25 @@
+<div class="care-plan reveal">
+  <div class="care-included">
+    <p class="care-lede">{{ lede }}</p>
+    <ul class="check-list" role="list">
+      @for (item of items; track item) {
+        <li>
+          <svg aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+          <span>{{ item }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+  <aside class="care-response" aria-labelledby="care-response-h">
+    <h3 id="care-response-h">{{ responseHeading }}</h3>
+    <dl>
+      @for (response of responseTimes; track response.situation) {
+        <div>
+          <dt>{{ response.situation }}</dt>
+          <dd>{{ response.time }}</dd>
+        </div>
+      }
+    </dl>
+    <p class="small">{{ terms }}</p>
+  </aside>
+</div>

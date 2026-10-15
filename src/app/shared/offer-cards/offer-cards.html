@@ -1,0 +1,34 @@
+<div class="practice-grid offer-grid reveal" [class.offer-grid-single]="snapshots().length === 1">
+  @for (snapshot of snapshots(); track snapshot.anchorId) {
+    <article class="offer-card" [id]="linkTitles() ? null : snapshot.anchorId" tabindex="-1">
+      <h3>
+        @if (linkTitles()) {
+          <a [routerLink]="pathOf(snapshot)" [fragment]="snapshot.anchorId">{{ snapshot.title }}</a>
+        } @else {
+          <span>{{ snapshot.title }}</span>
+        }
+      </h3>
+      <p class="offer-lede">{{ snapshot.lede }}</p>
+      <h4>{{ labels.get }}</h4>
+      <ul class="check-list" role="list">
+        @for (item of snapshot.getItems; track item) {
+          <li>
+            <svg aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>
+            <span>{{ item }}</span>
+          </li>
+        }
+      </ul>
+      <p class="offer-time">
+        <svg aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg
+        ><span>{{ snapshot.time }}</span>
+      </p>
+      <h4>{{ labels.how }}</h4>
+      <p>{{ snapshot.howBody }}</p>
+      <p class="small">{{ snapshot.credit }}</p>
+      @if (snapshot.limits; as limits) {
+        <p class="small">{{ limits }}</p>
+      }
+    </article>
+  }
+</div>
+<p class="offer-cta reveal"><app-book-call /></p>

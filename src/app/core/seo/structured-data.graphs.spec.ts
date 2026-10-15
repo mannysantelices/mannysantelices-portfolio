@@ -91,6 +91,23 @@ describe('structured data graphs', () => {
     expect(nodeOfType('about', 'BreadcrumbList')).toBeDefined();
   });
 
+  it('describes the case study as an Article by the organisation, headline equal to the h1', () => {
+    const meta = PAGE_META['case-study-own-site'];
+    const article = nodeOfType('case-study-own-site', 'Article');
+
+    expect(article?.['headline']).toBe(meta.headline);
+    expect(article?.['author']).toEqual({ '@id': ORGANIZATION_ID });
+    expect(article?.['datePublished']).toBe(meta.publishedDate);
+    expect(nodeOfType('case-study-own-site', 'BreadcrumbList')).toBeDefined();
+  });
+
+  it('lists five offers on home: three services and two Snapshots', () => {
+    const catalog = nodeOfType('home', 'Organization')?.['hasOfferCatalog'] as JsonLdNode;
+    const offers = catalog['itemListElement'] as readonly JsonLdNode[];
+
+    expect(offers.length).toBe(5);
+  });
+
   it('keeps the founder out of every other page', () => {
     const otherPages = ALL_PAGE_META.filter((meta: PageMeta) => meta.id !== 'about');
 

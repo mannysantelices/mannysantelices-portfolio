@@ -27,12 +27,12 @@ describe('HomePage', () => {
     expect(page.querySelector('nav[aria-label="Breadcrumb"]')).toBeNull();
   });
 
-  it('shows the sections in order: services, how we work, about teaser', () => {
+  it('shows the sections in order: services, start, how we work, work, about teaser', () => {
     const sectionIds = Array.from(page.querySelectorAll('section[id]')).map(
       (section: Element) => section.id,
     );
 
-    expect(sectionIds).toEqual(['services', 'how-we-work', 'about-teaser']);
+    expect(sectionIds).toEqual(['services', 'start', 'how-we-work', 'work', 'about-teaser']);
   });
 
   it('links each service heading to its route, in display order', () => {

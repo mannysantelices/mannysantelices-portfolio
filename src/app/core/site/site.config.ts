@@ -9,6 +9,12 @@ export const SITE_URL: string = `${SITE_ORIGIN}${BASE_PATH}`;
 export const REGION_LINE: string = 'Remote, worldwide';
 export const AREA_SERVED: string = 'Worldwide';
 
+/**
+ * Where every "Book a call" link points: this fragment on the current route. When the owner
+ * supplies a booking URL, change the link target here and in `BookCall` only.
+ */
+export const BOOK_CALL_FRAGMENT: string = 'contact';
+
 /** Existing contact details. Add no other address. */
 export const CONTACT_EMAIL: string = 'manny.santelices01@gmail.com';
 export const LINKEDIN_URL: string = 'https://www.linkedin.com/in/manny-santelices-08a598163';

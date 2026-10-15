@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { CardGrid } from '../../shared/card-grid/card-grid';
+import { CarePlan } from '../../shared/care-plan/care-plan';
+import { CARE_SECTION } from '../../shared/care-plan/care-plan.copy';
 import { PageHero } from '../../shared/page-hero/page-hero';
 import { PageSection } from '../../shared/page-section/page-section';
 import { RelatedServices } from '../../shared/related-services/related-services';
@@ -17,10 +19,10 @@ import {
   CREATE_STEPS_SECTION,
 } from './website-creation.copy';
 
-/** `/website-creation/`: what you get, who it is for, how it starts, related services. */
+/** `/website-creation/`: what you get, who it is for, how it starts, care plan, related. */
 @Component({
   selector: 'app-website-creation-page',
-  imports: [CardGrid, PageHero, PageSection, RelatedServices, Steps],
+  imports: [CardGrid, CarePlan, PageHero, PageSection, RelatedServices, Steps],
   templateUrl: './website-creation-page.html',
 })
 export class WebsiteCreationPage {
@@ -32,5 +34,6 @@ export class WebsiteCreationPage {
   protected readonly stepsSection = CREATE_STEPS_SECTION;
   protected readonly steps = CREATE_STEPS;
   protected readonly stepsLink = CREATE_STEPS_LINK;
+  protected readonly careSection = CARE_SECTION;
   protected readonly relatedSection = CREATE_RELATED_SECTION;
 }

@@ -4,7 +4,7 @@ import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 
 import { PageId } from '../site/page-id';
 import { BING_SITE_VERIFICATION, GOOGLE_SITE_VERIFICATION } from '../site/site.config';
-import { buildMetaTags, buildVerificationTags } from './meta-tags.builder';
+import { articlePublishedTag, buildMetaTags, buildVerificationTags } from './meta-tags.builder';
 import { PAGE_META, canonicalUrl } from './page-meta.data';
 import { buildGraph } from './structured-data.graphs';
 import { StructuredDataService } from './structured-data.service';
@@ -27,6 +27,7 @@ export class SeoService {
     this.titleService.setTitle(meta.title);
     this.updateTags(buildMetaTags(meta, canonical));
     this.updateTags(buildVerificationTags(GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION));
+    this.updateArticleTag(articlePublishedTag(meta));
     this.updateCanonical(canonical);
     this.structuredData.apply(buildGraph(pageId));
   }
@@ -35,6 +36,15 @@ export class SeoService {
     for (const tag of tags) {
       this.metaService.updateTag(tag);
     }
+  }
+
+  /** Present on the case study only; removed again on client navigation to any other page. */
+  private updateArticleTag(tag: MetaDefinition | null): void {
+    if (tag) {
+      this.metaService.updateTag(tag);
+      return;
+    }
+    this.metaService.removeTag("property='article:published_time'");
   }
 
   private updateCanonical(canonical: string): void {

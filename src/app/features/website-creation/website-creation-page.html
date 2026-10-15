@@ -12,6 +12,10 @@
   <app-steps [steps]="steps" [contactLinkLabel]="stepsLink" />
 </app-page-section>
 
+<app-page-section [copy]="careSection">
+  <app-care-plan />
+</app-page-section>
+
 <app-page-section [copy]="relatedSection">
   <app-related-services [currentPageId]="hero.pageId" />
 </app-page-section>

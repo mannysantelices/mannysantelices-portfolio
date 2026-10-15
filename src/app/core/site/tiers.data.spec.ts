@@ -9,10 +9,11 @@ describe('improvement tiers', () => {
     expect(names).toEqual([...IMPROVEMENT_TIER_NAMES]);
   });
 
-  it('gives every tier a summary, an audience and a link label naming the tier', () => {
+  it('gives every tier a summary, four scope items, a time and a link label naming the tier', () => {
     for (const tier of IMPROVEMENT_TIERS) {
       expect(tier.summary.length).toBeGreaterThan(0);
-      expect(tier.audience.length).toBeGreaterThan(0);
+      expect(tier.scope.length).toBe(4);
+      expect(tier.time.length).toBeGreaterThan(0);
       expect(tier.linkLabel).toContain(tier.name);
     }
   });
