@@ -60,6 +60,10 @@ function toTier(name: string): ImprovementTier {
 /** The three tiers in display order. No prices: the scope of a job is agreed on enquiry. */
 export const IMPROVEMENT_TIERS: readonly ImprovementTier[] = IMPROVEMENT_TIER_NAMES.map(toTier);
 
+export const TIER_LABELS = {
+  audience: 'Who it is for',
+} as const;
+
 export const TIERS_FOOTNOTE: string =
   'Every tier starts with scope agreed in writing. Turnaround runs from signed scope and receipt of everything we need from you. We do not promise rankings, traffic or scores; we show you what changed.';
 

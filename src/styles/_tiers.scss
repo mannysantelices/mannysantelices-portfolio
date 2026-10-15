@@ -22,6 +22,15 @@
   color: var(--ink);
   margin: 0 0 20px;
 }
+.tier-summary dt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-dim);
+  margin: 0 0 4px;
+}
+.tier-summary dd {
+  margin: 0;
+}
 /* Pinned to the bottom, so the three links line up whatever the text length. */
 .tier-card .text-link {
   margin-top: auto;

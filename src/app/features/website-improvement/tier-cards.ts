@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 
 import { CurrentRouteService } from '../../core/navigation/current-route.service';
 import { CONTACT_FRAGMENT } from '../../core/site/nav.data';
-import { BETWEEN_TIERS, IMPROVEMENT_TIERS, TIERS_FOOTNOTE } from '../../core/site/tiers.data';
+import { BETWEEN_TIERS, IMPROVEMENT_TIERS, TIER_LABELS, TIERS_FOOTNOTE } from '../../core/site/tiers.data';
 
 /** The three tier cards, the footnote and the between-tiers note. No prices, and no tier is highlighted. */
 @Component({
@@ -17,4 +17,5 @@ export class TierCards {
   protected readonly tiers = IMPROVEMENT_TIERS;
   protected readonly footnote = TIERS_FOOTNOTE;
   protected readonly between = BETWEEN_TIERS;
+  protected readonly labels = TIER_LABELS;
 }

@@ -2,7 +2,10 @@
   @for (tier of tiers; track tier.name) {
     <li class="tier-card">
       <h3>{{ tier.name }}</h3>
-      <p class="tier-summary">{{ tier.summary }}</p>
+      <dl class="tier-summary">
+        <dt>{{ labels.audience }}</dt>
+        <dd>{{ tier.summary }}</dd>
+      </dl>
       <ul class="check-list tier-scope" role="list">
         @for (item of tier.scope; track item) {
           <li>
