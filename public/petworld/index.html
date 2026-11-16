@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Watch a tiny pixel pet survive on a painted island." />
+    <title>PetWorld</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <script type="module" crossorigin src="./assets/index-Bw9SRoVr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Ihjtt7d8.css">
+  </head>
+  <body>
+    <canvas id="scene" aria-label="Painted island with a pet"></canvas>
+    <div id="wash" aria-hidden="true"></div>
+    <div id="hud">
+      <section class="panel" id="status" aria-label="Pet status">
+        <div class="title"><strong>PetWorld</strong><span id="clock"></span></div>
+        <div id="pet-title"></div>
+        <div id="activity"></div>
+        <div class="bar" data-need="hunger"><span>Hunger</span><div class="track"><div class="fill"></div></div></div>
+        <div class="bar" data-need="thirst"><span>Thirst</span><div class="track"><div class="fill"></div></div></div>
+        <div class="bar" data-need="energy"><span>Energy</span><div class="track"><div class="fill"></div></div></div>
+        <div class="bar" data-need="health"><span>Health</span><div class="track"><div class="fill"></div></div></div>
+        <div class="level-row"><strong id="level"></strong><span id="path"></span></div>
+        <div class="track xp"><div class="fill" id="xp-fill"></div></div>
+        <div class="trust-row"><span>Bond <strong id="trust"></strong></span><button type="button" id="suggest-clear" hidden>Clear suggestion</button></div>
+        <button type="button" id="care-button">Pet and cheer</button>
+        <details id="pet-details">
+          <summary>Details</summary>
+          <div id="skills" aria-label="Skills"></div>
+          <div class="soul-row"><span tabindex="0" title="Soul: the spirit that lives on from pet to pet and keeps its quality." aria-label="Soul: the spirit that lives on from pet to pet and keeps its quality.">Soul <strong id="soul-name"></strong></span><span id="soul-quality" tabindex="0" title="Quality: grows when your pet trusts and follows you. Higher quality means stronger pets."></span></div>
+          <div id="soul-effects" tabindex="0" title="Tier: each tier unlocks more stats and a higher level cap."></div>
+          <form id="rename-form"><label class="sr-only" for="pet-name">Pet name</label><input id="pet-name" maxlength="16" autocomplete="off" /><button type="submit">Rename</button></form>
+          <div id="pet-element"></div>
+          <div id="unlock"></div>
+        </details>
+      </section>
+      <details class="panel" id="gear" open>
+        <summary class="gear-title"><strong>Equipment</strong><span id="gear-found"></span></summary>
+        <ul id="gear-slots"></ul>
+        <div id="gear-stats"></div>
+        <div id="gear-bag"></div>
+      </details>
+      <div id="target" hidden aria-live="polite"></div>
+      <div id="elements">
+        <details class="panel" id="legend"><summary>Element legend</summary><div id="legend-body"></div></details>
+        <details class="panel" id="nest"><summary id="nest-title">Nest</summary><div id="nest-body"></div><button type="button" id="codex-open" aria-expanded="false" aria-controls="codex">Open codex</button></details>
+        <details class="panel" id="fusion" open><summary id="fusion-title">Egg Fusion</summary><div id="fusion-body"></div></details>
+      </div>
+      <div id="day" aria-live="polite"></div>
+      <section class="panel" id="boss" hidden aria-label="Boss health"><div id="boss-label"></div><div class="track"><div class="fill" id="boss-fill"></div></div></section>
+      <div id="suggest-hint" hidden></div>
+      <div id="banner" role="status" hidden></div>
+      <div id="danger-region" aria-live="polite"></div>
+      <div id="recap-region" aria-live="polite"></div>
+      <section class="panel" id="log" aria-label="Activity log" aria-live="polite"><ul id="log-list"></ul></section>
+      <div id="view-controls">
+        <div id="rotate" role="group" aria-label="Rotate view">
+          <button type="button" id="rotate-left" aria-label="Rotate view left (Q)">&#8634;</button>
+          <button type="button" id="rotate-right" aria-label="Rotate view right (E)">&#8635;</button>
+        </div>
+        <button type="button" id="camera-toggle" aria-pressed="true" aria-label="Camera: following Pip (F)"><span class="cam-short" aria-hidden="true">&#128247;</span><span class="cam-long" aria-hidden="true">Camera: following Pip (F)</span></button>
+      </div>
+      <div id="speed" role="group" aria-label="Game speed">
+        <button type="button" data-speed="0">Pause</button>
+        <button type="button" data-speed="1" class="active">1x</button>
+        <button type="button" data-speed="4">4x</button>
+      </div>
+    </div>
+    <div id="codex" hidden role="dialog" aria-modal="true" aria-labelledby="codex-title">
+      <div class="dialog"><h2 id="codex-title">Discovery codex</h2><p>Rares, tier-2 rares and ultimates stay hidden until you create or see them.</p><div id="codex-content"></div><button type="button" id="codex-close" class="confirm">Close</button></div>
+    </div>
+    <div id="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="overlay-title"></div>
+  </body>
+</html>
