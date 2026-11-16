@@ -44,16 +44,18 @@
 }
 /* Chips are not interactive: no hover state. */
 .chip {
-  font-size: 15px;
+  font-size: 14px;
   padding: 8px 15px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
+  background: var(--bg-panel);
   color: var(--ink-dim);
   font-family: var(--font-mono);
   white-space: nowrap;
 }
 .chip.cert {
-  color: var(--accent-text);
+  color: var(--teal);
+  background: var(--teal-tint);
 }
 
 @media (max-width: bp.$stack-below) {
@@ -84,9 +86,20 @@
   background: var(--bg-panel);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 32px;
+}
+:root[data-theme='dark'] .practice-card {
+  box-shadow: var(--shadow-1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .practice-card {
+    box-shadow: var(--shadow-1);
+  }
 }
 .practice-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   transition:
     transform 0.18s var(--ease),
     box-shadow 0.18s var(--ease),
@@ -94,28 +107,51 @@
 }
 @media (hover: hover) {
   .practice-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-2);
     border-color: var(--line-strong);
   }
+  .practice-card:hover::before {
+    opacity: 1;
+  }
+}
+/* Accent rule along the top edge, shown on hover. */
+.practice-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 32px;
+  right: 32px;
+  height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.18s var(--ease);
+}
+.practice-card .card-foot {
+  margin-top: auto;
+  align-self: flex-start;
+  font-weight: 600;
 }
 .practice-card .glyph {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--accent-tint);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-text);
-  font-family: var(--font-mono);
-  font-size: 16px;
   margin-bottom: 24px;
+}
+.practice-card .glyph svg {
+  width: 26px;
+  height: 26px;
 }
 .practice-card h3 {
   font-family: var(--font-display);
-  font-size: 20px;
-  line-height: 1.3;
+  font-size: 22px;
+  line-height: 1.25;
   font-weight: 600;
   margin: 0 0 12px;
 }
@@ -129,7 +165,7 @@
 }
 .practice-card p {
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--ink-dim);
   margin: 0 0 16px;
 }
@@ -157,8 +193,8 @@
   left: 0;
   top: 8px;
   width: 8px;
-  height: 1px;
-  background: var(--accent);
+  height: 2px;
+  background: var(--teal);
 }
 /* After the base list rule: same specificity, so order decides. */
 .service-card ul {

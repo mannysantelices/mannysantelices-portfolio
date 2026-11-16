@@ -1,7 +1,7 @@
 .btn {
   font-family: var(--font-body);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   min-height: 48px;
   padding: 12px 24px;
   border-radius: var(--radius);
@@ -15,7 +15,7 @@
     transform 0.18s var(--ease),
     box-shadow 0.18s var(--ease),
     border-color 0.18s var(--ease);
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
 }
 .btn-primary {
   background: var(--accent);
@@ -23,7 +23,7 @@
   box-shadow: var(--shadow-1);
 }
 .btn-primary:hover {
-  background: var(--accent-soft);
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 /* Decorative arrow; the empty alternative text keeps it out of the accessible name. */
@@ -35,12 +35,12 @@
   transform: translateX(2px);
 }
 .btn-ghost {
-  background: var(--bg-panel);
+  background: transparent;
   border-color: var(--line-strong);
   color: var(--ink);
 }
 .btn-ghost:hover {
-  border-color: var(--accent);
+  border-color: var(--accent-text);
   color: var(--accent-text);
 }
 /* Sending: the button keeps focus, so it is not `disabled`; it only stops looking pressable. */

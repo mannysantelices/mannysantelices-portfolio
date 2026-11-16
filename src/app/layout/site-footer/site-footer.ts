@@ -2,7 +2,13 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { CurrentRouteService } from '../../core/navigation/current-route.service';
-import { CONTACT_FRAGMENT, CONTACT_LABEL, FOOTER_NAV_LINKS } from '../../core/site/nav.data';
+import {
+  CONTACT_FRAGMENT,
+  CONTACT_LABEL,
+  FOOTER_COMPANY_LINKS,
+  FOOTER_SERVICE_LINKS,
+  LAB_LINK,
+} from '../../core/site/nav.data';
 import { BUSINESS_NAME, REGION_LINE } from '../../core/site/site.config';
 
 /**
@@ -16,7 +22,9 @@ import { BUSINESS_NAME, REGION_LINE } from '../../core/site/site.config';
 })
 export class SiteFooter {
   protected readonly currentPath = inject(CurrentRouteService).path;
-  protected readonly links = FOOTER_NAV_LINKS;
+  protected readonly labLink = LAB_LINK;
+  protected readonly serviceLinks = FOOTER_SERVICE_LINKS;
+  protected readonly companyLinks = FOOTER_COMPANY_LINKS;
   protected readonly contactLabel = CONTACT_LABEL;
   protected readonly contactFragment = CONTACT_FRAGMENT;
   protected readonly exactMatch = { exact: true };

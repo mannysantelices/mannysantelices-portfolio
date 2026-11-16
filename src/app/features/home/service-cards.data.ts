@@ -4,8 +4,8 @@ import { SERVICES, ServiceSummary } from '../../core/site/services.data';
 /** A home-page service card: the shared service record plus the card-only wording. */
 export interface ServiceCard {
   readonly service: ServiceSummary;
-  /** Decorative; only characters the mono font draws. */
-  readonly glyph: string;
+  /** Sprite symbol id (see icon-sprite); decorative. */
+  readonly icon: string;
   readonly points: readonly string[];
   /** Contains the service name, so the link makes sense out of context. */
   readonly linkLabel: string;
@@ -16,7 +16,7 @@ type CardDetails = Omit<ServiceCard, 'service'>;
 /** Wording from marketing's copy deck (`home.services.card*`). */
 const CARD_DETAILS: Readonly<Partial<Record<PageId, CardDetails>>> = {
   'website-creation': {
-    glyph: '</>',
+    icon: 'icon-monitor',
     points: [
       'A site designed around your brand and your content',
       'Page titles, descriptions and a sitemap set up for search engines',
@@ -25,7 +25,7 @@ const CARD_DETAILS: Readonly<Partial<Record<PageId, CardDetails>>> = {
     linkLabel: 'More about website creation',
   },
   'website-improvement': {
-    glyph: '↑',
+    icon: 'icon-pencil',
     points: [
       'Starts with a review of the site as it is today',
       'Three tiers: Basic, Professional and Enterprise',
@@ -34,7 +34,7 @@ const CARD_DETAILS: Readonly<Partial<Record<PageId, CardDetails>>> = {
     linkLabel: 'More about website improvement',
   },
   'devsecops-consulting': {
-    glyph: '✓',
+    icon: 'icon-shield-check',
     points: [
       'Security, reliability and cost looked at together',
       'Covers pipelines, infrastructure as code and access',

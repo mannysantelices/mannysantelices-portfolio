@@ -1,0 +1,21 @@
+<aside class="lab-band reveal" aria-labelledby="lab-title">
+  <svg class="lab-art" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+    <g stroke-linejoin="round">
+      <polygon points="56,70 86,55 116,70 86,85" fill="var(--voxel-a)" />
+      <polygon points="56,70 86,85 86,119 56,104" fill="var(--voxel-a)" opacity="0.62" />
+      <polygon points="116,70 86,85 86,119 116,104" fill="var(--voxel-a)" opacity="0.82" />
+      <polygon points="26,102 56,87 86,102 56,117" fill="var(--voxel-b)" />
+      <polygon points="26,102 56,117 56,142 26,127" fill="var(--voxel-b)" opacity="0.62" />
+      <polygon points="86,102 56,117 56,142 86,127" fill="var(--voxel-b)" opacity="0.82" />
+      <polygon points="96,104 116,94 136,104 116,114" fill="var(--voxel-c)" />
+      <polygon points="96,104 116,114 116,134 96,124" fill="var(--voxel-c)" opacity="0.62" />
+      <polygon points="136,104 116,114 116,134 136,124" fill="var(--voxel-c)" opacity="0.82" />
+    </g>
+  </svg>
+  <div class="lab-text">
+    <p class="lab-badge">{{ lab.badge }}</p>
+    <h3 id="lab-title">{{ lab.title }}</h3>
+    <p>{{ lab.body }}</p>
+  </div>
+  <a class="btn btn-ghost lab-link" [attr.href]="lab.href">{{ lab.linkLabel }} &rarr;</a>
+</aside>

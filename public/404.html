@@ -13,23 +13,23 @@
   <style>
     /* Colour values copied from src/styles/_tokens.scss; keep the two in step. */
     :root {
-      --bg: #fcfaf8; --line: rgba(32, 19, 22, 0.1);
-      --ink: #201316; --ink-dim: #5c474b; --ink-faint: #7d676c;
-      --accent: #a41c44; --accent-soft: #c22a54; --accent-ink: #ffffff; --accent-text: #a41c44;
+      --bg: #fbf8f5; --line: rgba(32, 19, 22, 0.1);
+      --ink: #1d1215; --ink-dim: #54404a; --ink-faint: #6f5a5f;
+      --accent: #a41c44; --accent-soft: #8c1739; --accent-ink: #ffffff; --accent-text: #a41c44;
       --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --mono: 'SFMono-Regular', ui-monospace, monospace;
       --gutter: 20px;
     }
     :root[data-theme='dark'] {
-      --bg: #121010; --line: rgba(244, 240, 238, 0.1);
-      --ink: #f4f0ee; --ink-dim: #b9b0ac; --ink-faint: #8c8581;
-      --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #121010; --accent-text: #e8688c;
+      --bg: #110f0f; --line: rgba(244, 240, 238, 0.1);
+      --ink: #f6f2f0; --ink-dim: #c2b9b5; --ink-faint: #9a928e;
+      --accent: #e0506f; --accent-soft: #ee7b95; --accent-ink: #110f0f; --accent-text: #ee7b95;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme='light']) {
-        --bg: #121010; --line: rgba(244, 240, 238, 0.1);
-        --ink: #f4f0ee; --ink-dim: #b9b0ac; --ink-faint: #8c8581;
-        --accent: #dd4870; --accent-soft: #e8688c; --accent-ink: #121010; --accent-text: #e8688c;
+        --bg: #110f0f; --line: rgba(244, 240, 238, 0.1);
+        --ink: #f6f2f0; --ink-dim: #c2b9b5; --ink-faint: #9a928e;
+        --accent: #e0506f; --accent-soft: #ee7b95; --accent-ink: #110f0f; --accent-text: #ee7b95;
       }
     }
     @media (min-width: 600px) { :root { --gutter: 24px; } }

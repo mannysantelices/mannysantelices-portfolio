@@ -19,3 +19,27 @@
   font-display: swap;
   src: url('../assets/fonts/space-grotesk-700.woff2') format('woff2');
 }
+/* Inter: one variable latin file covers 400-600. */
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/inter-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('../assets/fonts/jetbrains-mono-500.woff2') format('woff2');
+}
+/* Local fallback tuned to Inter's metrics so the swap does not shift layout. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}

@@ -14,33 +14,62 @@
   /* Carries the top line across the full band, not just the content width. */
   border-image: linear-gradient(var(--line), var(--line)) 1 / 1px 0 0 0 / 0 100vmax;
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--ink-faint);
 }
 .site-footer p {
   margin: 0;
 }
 
-.footer-nav ul {
-  list-style: none;
-  margin: 16px 0;
-  padding: 0;
+.footer-brand .footer-line {
+  font-size: 14px;
+  max-width: 40ch;
+}
+.footer-brand::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-bottom: 16px;
+  background: var(--accent);
+}
+.footer-nav {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 24px;
+  margin: 16px 0;
+}
+.footer-heading {
+  margin: 0 0 4px !important;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.footer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .footer-nav a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
+  font-family: var(--font-body);
+  font-size: 15px;
   color: var(--ink-dim);
   text-decoration: none;
 }
 .footer-nav a:hover {
+  color: var(--ink);
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 .footer-nav a[aria-current='page'] {
   color: var(--ink);
+}
+.footer-legal {
+  font-size: 14px;
 }
 
 @media (min-width: bp.$cols3) {
@@ -50,8 +79,7 @@
     align-items: start;
     gap: 0 40px;
   }
-  .footer-nav ul {
-    margin: 0;
-    margin-top: -12px;
+  .footer-nav {
+    margin: -12px 0 0;
   }
 }

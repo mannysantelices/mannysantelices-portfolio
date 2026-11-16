@@ -1,7 +1,9 @@
 <div class="practice-grid cols-3 reveal">
   @for (card of cards; track card.service.id) {
     <article class="practice-card service-card">
-      <div class="glyph" aria-hidden="true">{{ card.glyph }}</div>
+      <div class="glyph" aria-hidden="true">
+        <svg focusable="false"><use [attr.href]="'#' + card.icon"></use></svg>
+      </div>
       <h3>
         <a [routerLink]="'/' + card.service.path">{{ card.service.name }}</a>
       </h3>
@@ -11,7 +13,7 @@
           <li>{{ point }}</li>
         }
       </ul>
-      <a class="text-link" [routerLink]="'/' + card.service.path">{{ card.linkLabel }}</a>
+      <a class="text-link card-foot" [routerLink]="'/' + card.service.path">{{ card.linkLabel }}</a>
     </article>
   }
 </div>

@@ -1,22 +1,46 @@
 <footer class="site-footer">
-  <p class="footer-line">{{ footerLine }}</p>
+  <div class="footer-brand">
+    <p class="footer-line">{{ footerLine }}</p>
+  </div>
   <nav class="footer-nav" aria-label="Footer">
-    <ul>
-      @for (link of links; track link.path) {
+    <div class="footer-group">
+      <p class="footer-heading">Services</p>
+      <ul>
+        @for (link of serviceLinks; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive
+              ariaCurrentWhenActive="page"
+              [routerLinkActiveOptions]="exactMatch"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="footer-group">
+      <p class="footer-heading">Company</p>
+      <ul>
+        @for (link of companyLinks; track link.path) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              routerLinkActive
+              ariaCurrentWhenActive="page"
+              [routerLinkActiveOptions]="exactMatch"
+              >{{ link.label }}</a
+            >
+          </li>
+        }
         <li>
-          <a
-            [routerLink]="link.path"
-            routerLinkActive
-            ariaCurrentWhenActive="page"
-            [routerLinkActiveOptions]="exactMatch"
-            >{{ link.label }}</a
-          >
+          <a [attr.href]="labLink.href">{{ labLink.label }}</a>
         </li>
-      }
-      <li>
-        <a [routerLink]="currentPath()" [fragment]="contactFragment">{{ contactLabel }}</a>
-      </li>
-    </ul>
+        <li>
+          <a [routerLink]="currentPath()" [fragment]="contactFragment">{{ contactLabel }}</a>
+        </li>
+      </ul>
+    </div>
   </nav>
   <p class="footer-legal">&copy; {{ year }} {{ businessName }}</p>
 </footer>

@@ -20,12 +20,22 @@ import {
   HOME_SERVICES_SECTION,
   HOME_WORK_SECTION,
 } from './home.copy';
+import { LabBand } from './lab-band';
 import { ServiceCards } from './service-cards';
 
 /** Home: hero, services, Snapshots, how we work, case study, about teaser. Composes only. */
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink, CardGrid, CaseCard, OfferCards, PageHero, PageSection, ServiceCards],
+  imports: [
+    RouterLink,
+    CardGrid,
+    CaseCard,
+    OfferCards,
+    PageHero,
+    PageSection,
+    ServiceCards,
+    LabBand,
+  ],
   templateUrl: './home-page.html',
 })
 export class HomePage {

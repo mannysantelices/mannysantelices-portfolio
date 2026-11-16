@@ -10,7 +10,41 @@ export const HOME_HERO: HeroCopy = {
   primaryLabel: BOOK_CALL_LABEL,
   secondaryLabel: 'See our services',
   secondaryFragment: 'services',
+  eyebrow: 'Remote web and DevSecOps studio',
+  proof: ['Every change reviewed by a person', 'Scope agreed before we start', 'AWS-first'],
 };
+
+export interface PanelStep {
+  readonly name: string;
+  readonly detail: string;
+  readonly highlight?: boolean;
+}
+
+/** Illustrative project outline shown in the home hero panel (decorative, no claims). */
+export const HOME_PANEL: {
+  readonly label: string;
+  readonly pill: string;
+  readonly steps: readonly PanelStep[];
+} = {
+  label: 'Illustration: how a project runs, in four steps',
+  pill: 'Illustrative',
+  steps: [
+    { name: 'Scope', detail: 'Agreed before we start' },
+    { name: 'Build', detail: 'Pages, content, forms' },
+    { name: 'Human review', detail: 'Every change checked', highlight: true },
+    { name: 'Launch on AWS', detail: 'Hosted and handed over' },
+  ],
+};
+
+/** PetWorld lab band under the services cards. Owner-approved wording. */
+export const HOME_LAB = {
+  badge: 'Lab project',
+  title: 'PetWorld',
+  body: 'A 3D browser game where a pet lives, fights and grows on its own. Built in our own time; try the playable demo. It is a side project, not a client service.',
+  linkLabel: 'Play the PetWorld demo',
+  /** Relative to <base href>; the game is a static folder, not an Angular route. */
+  href: 'petworld/',
+} as const;
 
 export const HOME_SERVICES_SECTION: SectionCopy = {
   id: 'services',
