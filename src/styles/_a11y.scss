@@ -1,6 +1,6 @@
 /* The one focus style. Zero specificity, so a component can still adjust the offset. */
 :where(a, button, input, textarea, [tabindex]):focus-visible {
-  outline: 2px solid var(--focus);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
   border-radius: var(--radius);
 }

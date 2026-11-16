@@ -26,6 +26,12 @@ export const FOOTER_NAV_LINKS: readonly NavLink[] = [
   CASE_STUDY_LINK,
 ];
 
+/** Footer only. A static folder outside the router, so `href` is relative to <base href>. */
+export const LAB_LINK = { label: 'PetWorld (lab project)', href: 'petworld/' } as const;
+
+export const FOOTER_SERVICE_LINKS: readonly NavLink[] = SERVICES.map(toNavLink);
+export const FOOTER_COMPANY_LINKS: readonly NavLink[] = [HOME_LINK, ABOUT_LINK, CASE_STUDY_LINK];
+
 export const CONTACT_LABEL: string = 'Contact';
 /** Fragment ids owned by the shell. Link to them as the current route plus the fragment. */
 export const CONTACT_FRAGMENT: string = 'contact';

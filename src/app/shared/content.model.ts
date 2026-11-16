@@ -9,6 +9,10 @@ export interface HeroCopy {
   readonly secondaryLabel: string;
   /** Section id on the same page that the secondary button scrolls to. */
   readonly secondaryFragment: string;
+  /** Optional short label above the h1 (home only). */
+  readonly eyebrow?: string;
+  /** Optional proof row under the buttons: claims already in approved copy only. */
+  readonly proof?: readonly string[];
 }
 
 /** A page section's id and heading block. */

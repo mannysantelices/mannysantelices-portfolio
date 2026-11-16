@@ -30,8 +30,16 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.65;
+  /* The full-bleed hero wash is 100vw wide, which can exceed the viewport by a scrollbar. */
+  overflow-x: clip;
+}
+
+@media (max-width: 599.98px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 a {
@@ -67,27 +75,25 @@ html.reveal-ready .reveal:not(.in) {
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 24px;
+  margin-bottom: 48px;
 }
 
 .section-tag {
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--accent-text);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 0 0 12px;
 }
 
 .section-head h2 {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(30px, 3.4vw, 44px);
   font-weight: 600;
   margin: 0;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -99,12 +105,20 @@ html.reveal-ready .reveal:not(.in) {
   margin: 0;
 }
 
-/* Every second page section after the hero sits on a full-bleed raised band; the shadow
-   paints the band and the clip keeps it to the section's own height. */
-app-page-section:nth-of-type(even) > section {
+/* Rhythm: every second section sits on a full-bleed raised band (the shadow paints the band,
+   the clip keeps it to the section's height). Home picks its bands by id instead, so the
+   services cards under the hero are the anchor. */
+app-page-section:nth-of-type(even) > section,
+app-home-page app-page-section > section#services,
+app-home-page app-page-section > section#work {
   background: var(--bg-raised);
   box-shadow: 0 0 0 100vmax var(--bg-raised);
   clip-path: inset(0 -100vmax);
+}
+app-home-page app-page-section:nth-of-type(even) > section:not(#work) {
+  background: none;
+  box-shadow: none;
+  clip-path: none;
 }
 
 @media (max-width: bp.$sm-below) {

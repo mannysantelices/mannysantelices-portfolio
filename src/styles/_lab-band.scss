@@ -1,0 +1,58 @@
+/* PetWorld "Lab project" band under the home services cards. Secondary to the services. */
+.lab-band {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 20px 24px;
+  align-items: center;
+  margin-top: 32px;
+  padding: 28px;
+  background: var(--bg-panel);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-lg);
+}
+.lab-art {
+  width: 96px;
+  height: 96px;
+}
+.lab-badge {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: var(--teal-tint);
+  color: var(--teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lab-text h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+.lab-text p:last-child {
+  margin: 0;
+  color: var(--ink-dim);
+  max-width: 62ch;
+}
+.lab-link {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+@media (min-width: 760px) {
+  .lab-band {
+    grid-template-columns: 160px 1fr auto;
+  }
+  .lab-art {
+    width: 160px;
+    height: 160px;
+  }
+  .lab-link {
+    grid-column: auto;
+    justify-self: end;
+  }
+}
