@@ -37,12 +37,12 @@ describe('SiteHeader', () => {
     host.remove();
   });
 
-  it('shows the business name as a text wordmark that links home, with no image', () => {
+  it('shows the business name with the decorative mark, linking home', () => {
     const wordmark = host.querySelector<HTMLAnchorElement>('.nav-mark');
 
     expect(wordmark?.textContent?.trim()).toBe(BUSINESS_NAME);
     expect(wordmark?.getAttribute('href')).toBe('/');
-    expect(host.querySelector('img, picture')).toBeNull();
+    expect(wordmark?.querySelector('img')?.getAttribute('alt')).toBe('');
   });
 
   it('links to the three services and the about page, then the contact control', () => {
