@@ -31,16 +31,15 @@ export interface SocialImage {
 }
 
 /**
- * INTERIM image: background, grid and frame only, with no text, name or logo artwork, because no
- * final artwork exists yet. When the final image replaces the file, change `alt` to marketing's
- * `social.alt` wording, and only if the artwork really shows what that wording says.
+ * Brand v3 share image (visual-designer/brand/v3/png/share-image.png): logo mark, name and tagline.
+ * `alt` must describe what the file really shows, so change both together.
  */
 export const SOCIAL_IMAGE: SocialImage = {
   path: 'assets/social/santelices-systems-social-1200x630.png',
   width: 1200,
   height: 630,
   type: 'image/png',
-  alt: 'Dark background with a fine grid and a thin rectangular frame with two pink corner marks',
+  alt: 'Santelices Systems logo, a pink angular S mark beside the name, with the tagline Build, Automate, Innovate on a dark background with pink diagonal stripes',
 };
 
 /**

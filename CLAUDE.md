@@ -187,6 +187,8 @@ paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
   ships the strings in the JS bundle.
 - Every "Book a call" link targets `BOOK_CALL_FRAGMENT` (`site.config.ts`) on the current route;
   swap in a booking URL there and in `shared/book-call` only.
-- `SOCIAL_IMAGE` in `site.config.ts` points at an interim image with no text; its `alt` must
-  describe what the file really shows, so change both together.
+- `SOCIAL_IMAGE` in `site.config.ts` is the brand v3 share image (logo, name, tagline); its `alt`
+  must describe what the file really shows, so change both together. Brand source files live in
+  `team/visual-designer/brand/v3/`; favicons, apple-touch-icon and `icon-512.png` in `public/` are
+  generated from its PNGs (PIL), and the header mark is `public/assets/img/mark.svg`.
 - `public/sitemap.xml` `lastmod` is the date a page's content last changed, not the build date.
