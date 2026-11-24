@@ -17,21 +17,21 @@
     :root {
       --bg: #fbf8f5; --line: rgba(32, 19, 22, 0.1);
       --ink: #1d1215; --ink-dim: #54404a; --ink-faint: #6f5a5f;
-      --accent: #a41c44; --accent-soft: #8c1739; --accent-ink: #ffffff; --accent-text: #a41c44;
+      --accent: #c0185a; --accent-soft: #a01048; --accent-ink: #ffffff; --accent-text: #a01048;
       --font: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
       --mono: 'SFMono-Regular', ui-monospace, monospace;
       --gutter: 20px;
     }
     :root[data-theme='dark'] {
-      --bg: #110f0f; --line: rgba(244, 240, 238, 0.1);
+      --bg: #0b0b10; --line: rgba(244, 240, 238, 0.1);
       --ink: #f6f2f0; --ink-dim: #c2b9b5; --ink-faint: #9a928e;
-      --accent: #e0506f; --accent-soft: #ee7b95; --accent-ink: #110f0f; --accent-text: #ee7b95;
+      --accent: #ff1f6e; --accent-soft: #ff4d8d; --accent-ink: #0b0b10; --accent-text: #ff4d8d;
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme='light']) {
-        --bg: #110f0f; --line: rgba(244, 240, 238, 0.1);
+        --bg: #0b0b10; --line: rgba(244, 240, 238, 0.1);
         --ink: #f6f2f0; --ink-dim: #c2b9b5; --ink-faint: #9a928e;
-        --accent: #e0506f; --accent-soft: #ee7b95; --accent-ink: #110f0f; --accent-text: #ee7b95;
+        --accent: #ff1f6e; --accent-soft: #ff4d8d; --accent-ink: #0b0b10; --accent-text: #ff4d8d;
       }
     }
     @media (min-width: 600px) { :root { --gutter: 24px; } }
@@ -61,6 +61,7 @@
     }
     .mark .wm-a { font-weight: 700; color: var(--ink); }
     .mark .wm-b { font-weight: 500; color: var(--accent-text); }
+    .mark img { display: block; margin-right: 0.2em; }
     .mark:hover span { text-decoration: underline; text-underline-offset: 4px; }
     main { padding-block: 24px 32px; }
     .frame { position: relative; padding: 24px; border: 1px solid var(--line); }
@@ -102,7 +103,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="bar">
     <div class="inner">
-      <a class="mark" href="/mannysantelices-portfolio/"><span class="wm-a">Santelices</span> <span class="wm-b">Systems</span></a>
+      <a class="mark" href="/mannysantelices-portfolio/"><img src="/mannysantelices-portfolio/assets/img/mark.svg" alt="" width="37" height="40"><span class="wm-a">Santelices</span> <span class="wm-b">Systems</span></a>
     </div>
   </header>
   <main class="inner" id="main" tabindex="-1">

@@ -8,12 +8,12 @@ import {
   HERO_IMAGES,
   HERO_IMAGE_SIZES,
   HeroImage,
+  ImagePageId,
   heroFallbackSrc,
   heroSrcset,
 } from '../../core/site/hero-images.data';
 import { HOME_LINK } from '../../core/site/nav.data';
 import { BOOK_CALL_FRAGMENT } from '../../core/site/site.config';
-import { HeroPanel } from '../../features/home/hero-panel';
 import { HeroCopy } from '../content.model';
 
 /**
@@ -22,7 +22,7 @@ import { HeroCopy } from '../content.model';
  */
 @Component({
   selector: 'app-page-hero',
-  imports: [RouterLink, HeroPanel],
+  imports: [RouterLink],
   templateUrl: './page-hero.html',
 })
 export class PageHero implements OnInit {
@@ -42,7 +42,7 @@ export class PageHero implements OnInit {
     return PAGE_META[pageId].breadcrumbLabel;
   });
   protected readonly isHome = computed<boolean>(() => this.copy().pageId === 'home');
-  protected readonly image = computed<HeroImage>(() => HERO_IMAGES[this.copy().pageId]);
+  protected readonly image = computed<HeroImage>(() => HERO_IMAGES[this.copy().pageId as ImagePageId]);
   protected readonly webpSrcset = computed<string>(() => heroSrcset(this.image(), 'webp'));
   protected readonly jpegSrcset = computed<string>(() => heroSrcset(this.image(), 'jpg'));
   protected readonly fallbackSrc = computed<string>(() => heroFallbackSrc(this.image()));

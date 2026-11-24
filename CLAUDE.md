@@ -11,8 +11,8 @@ prerendered (`outputMode: "static"`) and deployed to GitHub Pages via
 ## Routes
 
 `/`, `/website-creation/`, `/website-improvement/`, `/devsecops-consulting/`, `/about/`,
-`/case-studies/own-site-rebuild/` (footer link only; text-only hero, so `HERO_IMAGES` is keyed by
-`HeroPageId`).
+`/case-studies/own-site-rebuild/` (footer link only; text-only hero). `HERO_IMAGES` is keyed by
+`ImagePageId`; the home hero uses `public/assets/img/hero-art.svg` (brand v3, no preload).
 Canonical URLs end in a slash. There is no `/contact/` route (the contact section is the last
 child of `<main>` on every route) and no wildcard route (`public/404.html` answers unknown
 paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
@@ -192,3 +192,6 @@ paths). Adding a route means: `app.routes.ts`, `core/site/page-id.ts`,
   `team/visual-designer/brand/v3/`; favicons, apple-touch-icon and `icon-512.png` in `public/` are
   generated from its PNGs (PIL), and the header mark is `public/assets/img/mark.svg`.
 - `public/sitemap.xml` `lastmod` is the date a page's content last changed, not the build date.
+- Brand accent is pink: light text `#a01048`, fills `#c0185a` (white label); dark text `#ff4d8d`, fills
+  `#ff1f6e` with a `#0b0b10` label (white fails there). `public/404.html` and the `theme-color` metas
+  in `index.html` carry copies. `public/icon-192.png` and `icon-512.png` back `manifest.webmanifest`.

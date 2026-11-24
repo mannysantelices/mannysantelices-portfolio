@@ -35,9 +35,20 @@ export function websiteNode(): JsonLdNode {
   };
 }
 
-/** Name and URL only: for routes that do not show the organisation's description. */
+function organizationLogo(): JsonLdNode {
+  return { '@type': 'ImageObject', url: `${SITE_URL}icon-512.png`, width: 512, height: 512 };
+}
+
+/** Name, URL and logo only: for routes that do not show the organisation's description. */
 export function organizationNode(): JsonLdNode {
-  return { '@type': 'Organization', '@id': ORGANIZATION_ID, name: BUSINESS_NAME, url: SITE_URL };
+  return {
+    '@type': 'Organization',
+    '@id': ORGANIZATION_ID,
+    name: BUSINESS_NAME,
+    url: SITE_URL,
+    logo: organizationLogo(),
+    image: `${SITE_URL}icon-512.png`,
+  };
 }
 
 /** For `/` and `/about/`. `extra` carries the offer catalogue or the founder reference. */

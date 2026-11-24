@@ -7,24 +7,24 @@
   --ink: #1d1215;
   --ink-dim: #54404a;
   --ink-faint: #6f5a5f;
-  --accent: #a41c44;
-  --accent-hover: #8c1739;
-  --accent-soft: #8c1739;
+  --accent: #c0185a;
+  --accent-hover: #a01048;
+  --accent-soft: #a01048;
   --accent-ink: #ffffff;
-  --accent-text: #a41c44;
+  --accent-text: #a01048;
   --error: #b3173f;
   --field-border: #6f5a5f;
   --placeholder: #6f5a5f;
   --focus: var(--accent-text);
   --teal: #2f6f6a;
   --teal-tint: rgba(47, 111, 106, 0.12);
-  --accent-tint: rgba(164, 28, 68, 0.08);
+  --accent-tint: rgba(192, 24, 90, 0.08);
   --hero-wash:
-    radial-gradient(60% 80% at 85% 0%, rgba(164, 28, 68, 0.1), transparent 70%),
+    radial-gradient(60% 80% at 85% 0%, rgba(192, 24, 90, 0.1), transparent 70%),
     radial-gradient(50% 60% at 0% 100%, rgba(47, 111, 106, 0.1), transparent 70%);
   --voxel-a: #e9a23b;
   --voxel-b: #2f6f6a;
-  --voxel-c: #a41c44;
+  --voxel-c: #c0185a;
   --ok: #3f7d4e;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', 'Inter Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -36,7 +36,7 @@
 }
 
 :root[data-theme='dark'] {
-  --bg: #110f0f;
+  --bg: #0b0b10;
   --bg-raised: #1a1716;
   --bg-panel: #211c1b;
   --line: rgba(244, 240, 238, 0.1);
@@ -44,19 +44,19 @@
   --ink: #f6f2f0;
   --ink-dim: #c2b9b5;
   --ink-faint: #9a928e;
-  --accent: #e0506f;
-  --accent-hover: #ec6f8a;
-  --accent-soft: #ec6f8a;
-  --accent-ink: #110f0f;
-  --accent-text: #ee7b95;
+  --accent: #ff1f6e;
+  --accent-hover: #ff4d8d;
+  --accent-soft: #ff4d8d;
+  --accent-ink: #0b0b10;
+  --accent-text: #ff4d8d;
   --error: #ee7b95;
   --field-border: #9a928e;
   --placeholder: #9a928e;
   --teal: #6fb0a9;
   --teal-tint: rgba(111, 176, 169, 0.16);
-  --accent-tint: rgba(238, 123, 149, 0.12);
+  --accent-tint: rgba(255, 77, 141, 0.12);
   --hero-wash:
-    radial-gradient(60% 80% at 85% 0%, rgba(224, 80, 111, 0.16), transparent 70%),
+    radial-gradient(60% 80% at 85% 0%, rgba(255, 31, 110, 0.16), transparent 70%),
     radial-gradient(50% 60% at 0% 100%, rgba(111, 176, 169, 0.14), transparent 70%);
   --voxel-a: #f0b14f;
   --voxel-b: #6fb0a9;
@@ -68,7 +68,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --bg: #110f0f;
+    --bg: #0b0b10;
     --bg-raised: #1a1716;
     --bg-panel: #211c1b;
     --line: rgba(244, 240, 238, 0.1);
@@ -76,19 +76,19 @@
     --ink: #f6f2f0;
     --ink-dim: #c2b9b5;
     --ink-faint: #9a928e;
-    --accent: #e0506f;
-    --accent-hover: #ec6f8a;
-    --accent-soft: #ec6f8a;
-    --accent-ink: #110f0f;
-    --accent-text: #ee7b95;
+    --accent: #ff1f6e;
+    --accent-hover: #ff4d8d;
+    --accent-soft: #ff4d8d;
+    --accent-ink: #0b0b10;
+    --accent-text: #ff4d8d;
     --error: #ee7b95;
     --field-border: #9a928e;
     --placeholder: #9a928e;
     --teal: #6fb0a9;
     --teal-tint: rgba(111, 176, 169, 0.16);
-    --accent-tint: rgba(238, 123, 149, 0.12);
+    --accent-tint: rgba(255, 77, 141, 0.12);
     --hero-wash:
-      radial-gradient(60% 80% at 85% 0%, rgba(224, 80, 111, 0.16), transparent 70%),
+      radial-gradient(60% 80% at 85% 0%, rgba(255, 31, 110, 0.16), transparent 70%),
       radial-gradient(50% 60% at 0% 100%, rgba(111, 176, 169, 0.14), transparent 70%);
     --voxel-a: #f0b14f;
     --voxel-b: #6fb0a9;
