@@ -14,28 +14,6 @@ export const HOME_HERO: HeroCopy = {
   proof: ['Every change reviewed by a person', 'Scope agreed before we start', 'AWS-first'],
 };
 
-export interface PanelStep {
-  readonly name: string;
-  readonly detail: string;
-  readonly highlight?: boolean;
-}
-
-/** Illustrative project outline shown in the home hero panel (decorative, no claims). */
-export const HOME_PANEL: {
-  readonly label: string;
-  readonly pill: string;
-  readonly steps: readonly PanelStep[];
-} = {
-  label: 'Illustration: how a project runs, in four steps',
-  pill: 'Illustrative',
-  steps: [
-    { name: 'Scope', detail: 'Agreed before we start' },
-    { name: 'Build', detail: 'Pages, content, forms' },
-    { name: 'Human review', detail: 'Every change checked', highlight: true },
-    { name: 'Launch on AWS', detail: 'Hosted and handed over' },
-  ],
-};
-
 /** PetWorld lab band under the services cards. Owner-approved wording. */
 export const HOME_LAB = {
   badge: 'Lab project',

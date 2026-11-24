@@ -32,7 +32,16 @@
     }
   </div>
   @if (isHome()) {
-    <app-hero-panel />
+    <figure class="hero-art">
+      <img
+        src="assets/img/hero-art.svg"
+        width="560"
+        height="560"
+        alt="Santelices Systems logo mark, a pink angular letter S on a dark background with pink diagonal streaks"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </figure>
   } @else {
     <figure class="hero-media" [attr.data-image]="image().name" [attr.data-tone]="image().tone">
       <picture>

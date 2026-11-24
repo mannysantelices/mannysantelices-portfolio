@@ -20,16 +20,11 @@ export interface HeroImage {
 export const HERO_IMAGE_SIZES: string =
   '(min-width: 1200px) 520px, (min-width: 860px) 45vw, calc(100vw - 40px)';
 
+/** Pages with a photo or illustration hero; the home page uses `assets/img/hero-art.svg` instead. */
+export type ImagePageId = Exclude<HeroPageId, 'home'>;
+
 /** Owner-supplied images, cropped, blurred and encoded per the visual refresh specification. */
-export const HERO_IMAGES: Readonly<Record<HeroPageId, HeroImage>> = {
-  home: {
-    name: 'home',
-    widths: [480, 800],
-    width: 800,
-    height: 600,
-    tone: 'light',
-    alt: 'Illustrative photo of a developer working at a standing desk in a bright home office, code on the monitor.',
-  },
+export const HERO_IMAGES: Readonly<Record<ImagePageId, HeroImage>> = {
   'website-creation': {
     name: 'creation',
     widths: [480, 800, 1200, 1600],
@@ -64,7 +59,7 @@ export const HERO_IMAGES: Readonly<Record<HeroPageId, HeroImage>> = {
   },
 };
 
-/** `srcset` for one format, e.g. `assets/img/home-480.webp 480w, ...`. */
+/** `srcset` for one format, e.g. `assets/img/creation-480.webp 480w, ...`. */
 export function heroSrcset(image: HeroImage, extension: 'webp' | 'jpg'): string {
   const entries: string[] = [];
   for (const width of image.widths) {
